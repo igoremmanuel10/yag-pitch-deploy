@@ -62,7 +62,8 @@
       background-size: 256px 256px;
     }
 
-    /* ========== SLIDES — 1280×720 desktop / 1080×1920 mobile ========== */
+    /* ========== SLIDES ========== */
+    /* Desktop: content max 1280px | Mobile: 100% fluid */
     .slide {
       min-height: 100vh;
       width: 100%;
@@ -71,41 +72,20 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
-      align-items: center;
-      padding: 0;
+      padding: 60px 80px;
       overflow: hidden;
     }
 
-    /* Content box constrained to 1280×720 on desktop */
-    .slide > * {
-      max-width: 1200px;
-      width: 100%;
-      padding-left: 48px;
-      padding-right: 48px;
-    }
-
-    /* For slides that need full-bleed (CTA, cover) override via inline style */
-
-    @media (min-width: 901px) {
-      /* Lock content area to 16:9 proportions */
-      .slide {
-        padding: 0 calc((100vw - 1280px) / 2);
-      }
+    @media (min-width: 1400px) {
+      .slide { padding: 60px calc((100vw - 1280px) / 2); }
     }
 
     @media (max-width: 900px) {
-      .slide > * {
-        max-width: none;
-        padding-left: 24px;
-        padding-right: 24px;
-      }
+      .slide { padding: 40px 24px; }
     }
 
     @media (max-width: 480px) {
-      .slide > * {
-        padding-left: 16px;
-        padding-right: 16px;
-      }
+      .slide { padding: 32px 16px; }
     }
 
     /* ========== TYPOGRAPHY ========== */
@@ -1177,21 +1157,15 @@
        MOBILE — nuclear fix, nothing overflows
        ============================================= */
     @media (max-width: 768px) {
-      /* Global: nothing overflows ever */
-      *, *::before, *::after { max-width: 100vw; }
+      /* Global: prevent horizontal scroll */
       html, body { overflow-x: hidden !important; }
-      .slide { min-height: 100svh; padding: 0; overflow: hidden; }
-      .slide > * {
-        padding-left: 16px !important; padding-right: 16px !important;
-        max-width: 100vw !important; overflow: hidden;
-        box-sizing: border-box !important;
-      }
 
-      /* All images fit their containers */
+      /* Slides: fully fluid, adapts to any screen */
+      .slide { min-height: auto; padding: 32px 16px; }
+
+      /* All images fit */
       img, iframe { max-width: 100% !important; }
-      .slide img:not(.logo-img):not(.nav-perfil-circle img) {
-        width: 100% !important; height: auto !important; object-fit: cover;
-      }
+      .slide img:not(.logo-img) { width: 100%; height: auto; object-fit: cover; }
 
       /* Typography — smaller on mobile */
       .slide-title { font-size: clamp(22px, 6.5vw, 32px) !important; line-height: 1.15 !important; }
