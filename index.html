@@ -1160,8 +1160,8 @@
       /* Global: prevent horizontal scroll */
       html, body { overflow-x: hidden !important; }
 
-      /* Slides: fully fluid, adapts to any screen */
-      .slide { min-height: auto; padding: 32px 16px; }
+      /* Slides: each one fills viewport, scroll snap works */
+      .slide { min-height: 100svh; padding: 32px 16px; justify-content: center; }
 
       /* All images fit */
       img, iframe { max-width: 100% !important; }
