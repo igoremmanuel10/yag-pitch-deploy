@@ -62,23 +62,50 @@
       background-size: 256px 256px;
     }
 
-    /* ========== SLIDES ========== */
+    /* ========== SLIDES — 1280×720 desktop / 1080×1920 mobile ========== */
     .slide {
       min-height: 100vh;
+      width: 100%;
       scroll-snap-align: start;
       position: relative;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      padding: 60px 80px;
+      align-items: center;
+      padding: 0;
       overflow: hidden;
     }
 
-    @media (max-width: 900px) {
-      .slide { padding: 40px 32px; }
+    /* Content box constrained to 1280×720 on desktop */
+    .slide > * {
+      max-width: 1280px;
+      width: 100%;
+      padding-left: 60px;
+      padding-right: 60px;
     }
+
+    /* For slides that need full-bleed (CTA, cover) override via inline style */
+
+    @media (min-width: 901px) {
+      /* Lock content area to 16:9 proportions */
+      .slide {
+        padding: 0 calc((100vw - 1280px) / 2);
+      }
+    }
+
+    @media (max-width: 900px) {
+      .slide > * {
+        max-width: none;
+        padding-left: 24px;
+        padding-right: 24px;
+      }
+    }
+
     @media (max-width: 480px) {
-      .slide { padding: 32px 20px; }
+      .slide > * {
+        padding-left: 16px;
+        padding-right: 16px;
+      }
     }
 
     /* ========== TYPOGRAPHY ========== */
