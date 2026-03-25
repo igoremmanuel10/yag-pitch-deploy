@@ -1174,119 +1174,160 @@
     }
 
     /* =============================================
-       COMPREHENSIVE MOBILE FIX
+       MOBILE — nuclear fix, nothing overflows
        ============================================= */
     @media (max-width: 768px) {
-      /* Base slide */
-      .slide { min-height: 100svh; padding: 0; }
-      .slide > * { padding-left: 16px !important; padding-right: 16px !important; }
-
-      /* Typography scale down */
-      .slide-title { font-size: clamp(24px, 7vw, 36px) !important; }
-      .brand-name { font-size: clamp(48px, 15vw, 80px) !important; }
-      .brand-sub { font-size: clamp(14px, 4vw, 18px) !important; }
-      .stat-number { font-size: clamp(40px, 12vw, 64px) !important; }
-
-      /* All grids stack */
-      .s2-layout,
-      .s4m-grid,
-      .s6-layout,
-      .s8-layout,
-      .timeline,
-      .s9-grid,
-      .pm-results {
-        grid-template-columns: 1fr !important;
-        gap: 16px !important;
+      /* Global: nothing overflows ever */
+      *, *::before, *::after { max-width: 100vw; }
+      html, body { overflow-x: hidden !important; }
+      .slide { min-height: 100svh; padding: 0; overflow: hidden; }
+      .slide > * {
+        padding-left: 16px !important; padding-right: 16px !important;
+        max-width: 100vw !important; overflow: hidden;
+        box-sizing: border-box !important;
       }
 
-      /* Archetype cards */
-      .s5-grid { grid-template-columns: 1fr !important; gap: 16px !important; }
+      /* All images fit their containers */
+      img, iframe { max-width: 100% !important; }
+      .slide img:not(.logo-img):not(.nav-perfil-circle img) {
+        width: 100% !important; height: auto !important; object-fit: cover;
+      }
 
-      /* Phone mockups smaller */
-      .phones-row { gap: 8px !important; }
-      .phone-mockup { width: 120px !important; }
-      .phone-mockup.center { width: 150px !important; }
+      /* Typography — smaller on mobile */
+      .slide-title { font-size: clamp(22px, 6.5vw, 32px) !important; line-height: 1.15 !important; }
+      .brand-name { font-size: clamp(48px, 14vw, 72px) !important; }
+      .brand-sub { font-size: clamp(13px, 3.5vw, 16px) !important; }
+      .stat-number { font-size: clamp(36px, 10vw, 56px) !important; }
+      .stat-label { font-size: 13px !important; }
+      p { font-size: clamp(13px, 3.5vw, 16px); }
+
+      /* ALL grids → 1 column */
+      .s2-layout, .s4m-grid, .s5-grid, .s6-layout,
+      .s8-layout, .timeline, .s9-grid, .pm-results {
+        display: flex !important; flex-direction: column !important;
+        gap: 16px !important; width: 100% !important;
+      }
+
+      /* Photo wrappers — constrain height, round corners */
+      .s2-photo-wrap, .s6-deco-wrap, .s8-photo-wrap,
+      .s4m-grid > div:last-child {
+        width: 100% !important; max-height: 220px !important;
+        aspect-ratio: 16/9 !important; overflow: hidden !important;
+        border-radius: 8px;
+      }
+
+      /* Photo strip — scroll horizontal */
+      .photo-strip {
+        gap: 4px !important; overflow-x: auto !important;
+        -webkit-overflow-scrolling: touch; padding: 0 16px;
+      }
+      .photo-strip img {
+        height: 100px !important; min-width: 80px !important;
+        width: auto !important; flex-shrink: 0;
+      }
+
+      /* Phone mockups — much smaller */
+      .phones-row { gap: 6px !important; justify-content: center !important; }
+      .phone-mockup { width: 100px !important; border-radius: 16px !important; border-width: 2px !important; }
+      .phone-mockup.center { width: 130px !important; }
       .phone-mockup.has-iframe { aspect-ratio: 9/19.5; }
+      .phone-mockup iframe { border-radius: 14px !important; }
 
-      /* Photo strip */
-      .photo-strip { gap: 4px !important; }
-      .photo-strip img { height: 120px !important; min-width: 100px !important; }
+      /* Pills row — wrap */
+      .pills-row { flex-wrap: wrap !important; gap: 6px !important; justify-content: center; }
+      .pill { font-size: 10px !important; padding: 5px 10px !important; }
 
-      /* Cards reduce padding */
-      .s2-card { padding: 16px 18px !important; font-size: 14px !important; }
-      .s6-card { padding: 20px !important; }
-      .s9-card { padding: 20px !important; }
+      /* Cards — smaller padding */
+      .s2-card { padding: 12px 14px !important; font-size: 13px !important; box-shadow: 3px 3px 0 var(--yellow) !important; }
+      .s2-card span { margin-right: 6px !important; }
+      .s6-card { padding: 16px !important; }
+      .s6-price { font-size: clamp(28px, 8vw, 40px) !important; }
+      .s9-card { padding: 16px !important; }
+      .s9-card-title { font-size: 13px !important; }
+      .s9-card p { font-size: 11px !important; }
+      .s9-icon { width: 28px !important; height: 28px !important; }
 
-      /* Compare table scroll */
-      .compare-table { font-size: 12px; }
-      .compare-table th, .compare-table td { padding: 10px 8px !important; }
+      /* Compare table — horizontal scroll */
+      .compare-table { font-size: 11px !important; display: block; overflow-x: auto; }
+      .compare-table th, .compare-table td { padding: 8px 6px !important; white-space: nowrap; }
 
-      /* Images constrain */
-      .s2-photo-wrap { aspect-ratio: 16/9 !important; max-height: 200px; }
-      .s6-deco-wrap { max-height: 250px !important; aspect-ratio: 16/9 !important; }
-      .s8-photo-wrap { max-height: 250px !important; }
+      /* Stat */
+      .s2-stat { margin-top: 16px !important; padding-top: 12px !important; }
+      .s3-stats { flex-direction: column !important; gap: 12px !important; }
 
-      /* Slide 4 grid */
-      .s4m-grid { gap: 20px !important; }
-      .s4m-grid > div:last-child { aspect-ratio: 16/9 !important; max-height: 200px; }
-
-      /* Pink Money */
-      .pink-money-sim { gap: 20px !important; }
-      .pm-slider-row { flex-direction: column !important; align-items: stretch !important; gap: 8px !important; }
-      .pm-value { text-align: left !important; font-size: 24px !important; }
-      .pm-card { padding: 16px !important; }
-      .pm-card-value { font-size: 20px !important; }
-      .pm-card-label { font-size: 10px !important; }
-
-      /* Shop */
-      .shop-grid { grid-template-columns: 1fr 1fr !important; gap: 12px !important; }
-      .shop-card-name { font-size: 13px !important; }
-      .shop-card-desc { font-size: 11px !important; }
-      .shop-card-price { font-size: 16px !important; }
-
-      /* Pills */
-      .pills-row { gap: 6px !important; }
-      .pill { font-size: 11px !important; padding: 6px 12px !important; }
-
-      /* Nav dots smaller on mobile */
-      .nav-dots { right: 8px !important; }
-      .nav-dot { width: 6px !important; height: 6px !important; }
-
-      /* CTA slide */
-      #slide-15 { padding: 32px 16px !important; }
-      #slide-15 .logo-img { width: 100px !important; }
-      .cta-headline { font-size: clamp(24px, 6vw, 32px) !important; }
-      .cta-btn { font-size: 16px !important; padding: 12px 32px !important; }
-
-      /* Scroll indicator */
-      .scroll-indicator { bottom: 20px; }
-
-      /* Stat layout */
-      .s2-stat { margin-top: 24px !important; padding-top: 16px !important; }
-      .stat-label { font-size: 14px !important; }
+      /* Slide 4 (Movimento) */
+      .s4m-grid > div:first-child p { font-size: 14px !important; }
 
       /* Timeline */
-      .t-phase { padding: 16px !important; }
-      .t-phase-title { font-size: 16px !important; }
+      .t-phase { padding: 14px !important; }
+      .t-phase-title { font-size: 14px !important; }
+      .t-phase ul li { font-size: 12px !important; }
 
-      /* Influencer/Embaixador */
-      .s8-quote { font-size: 16px !important; }
-      .s8-text { font-size: 14px !important; }
-      .s8-rebel { font-size: 18px !important; }
+      /* Embaixador */
+      .s8-quote { font-size: 15px !important; padding-left: 12px !important; }
+      .s8-text { font-size: 13px !important; }
+      .s8-rebel { font-size: 16px !important; }
 
-      /* Partnership cards */
-      .s9-card-title { font-size: 14px !important; }
-      .s9-card p { font-size: 12px !important; }
+      /* Vision */
+      .s10-mission, .s10-vision { font-size: 13px !important; }
+      .s10-closing { font-size: 13px !important; }
 
-      /* Vision slide */
-      .s10-mission, .s10-vision { font-size: 14px !important; }
+      /* ====== PINK MONEY SIMULATOR ====== */
+      .pink-money-sim { gap: 16px !important; width: 100% !important; }
+      .pm-slider-row {
+        flex-direction: column !important; align-items: stretch !important;
+        gap: 6px !important; width: 100% !important;
+      }
+      .pm-slider-label { font-size: 11px !important; min-width: auto !important; }
+      .pm-slider { width: 100% !important; min-width: 0 !important; }
+      .pm-value { text-align: left !important; font-size: 22px !important; min-width: auto !important; }
+      .pm-bar-wrap { width: 100% !important; }
+      .pm-milestone { font-size: 9px !important; }
+      .pm-card { padding: 14px !important; }
+      .pm-card-value { font-size: 18px !important; }
+      .pm-card-label { font-size: 9px !important; }
+      .pm-card-sub { font-size: 10px !important; }
+      .pm-note { font-size: 10px !important; }
+      .pm-bar-label { font-size: 10px !important; }
+
+      /* ====== SHOP ====== */
+      .shop-grid {
+        display: grid !important; grid-template-columns: 1fr 1fr !important;
+        gap: 10px !important; max-width: none !important; width: 100% !important;
+      }
+      .shop-card { overflow: hidden; }
+      .shop-card-img { aspect-ratio: 1 !important; }
+      .shop-card-img img { width: 100% !important; height: 100% !important; object-fit: cover !important; }
+      .shop-card-body { padding: 10px !important; }
+      .shop-card-name { font-size: 12px !important; }
+      .shop-card-desc { font-size: 10px !important; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+      .shop-card-price { font-size: 14px !important; }
+      .shop-card-tag { font-size: 8px !important; padding: 2px 6px !important; }
+
+      /* Nav dots */
+      .nav-dots { right: 6px !important; gap: 6px !important; }
+      .nav-dot { width: 5px !important; height: 5px !important; }
+
+      /* CTA */
+      #slide-15 { padding: 32px 16px !important; }
+      #slide-15 .logo-img { width: 80px !important; max-width: 80px !important; }
+      .cta-headline { font-size: clamp(22px, 6vw, 30px) !important; margin-bottom: 20px !important; }
+      .cta-btn { font-size: 14px !important; padding: 12px 28px !important; }
+      .cta-sub { font-size: 12px !important; }
+
+      /* Scroll indicator */
+      .scroll-indicator { transform: scale(0.7); bottom: 16px; }
     }
 
+    /* Extra small (iPhone SE) */
     @media (max-width: 380px) {
       .slide > * { padding-left: 12px !important; padding-right: 12px !important; }
-      .phone-mockup { width: 90px !important; }
-      .phone-mockup.center { width: 120px !important; }
+      .slide-title { font-size: clamp(18px, 6vw, 26px) !important; }
+      .phone-mockup { width: 80px !important; }
+      .phone-mockup.center { width: 110px !important; }
       .shop-grid { grid-template-columns: 1fr !important; }
+      .pm-card-value { font-size: 16px !important; }
+      .s2-card { padding: 10px 12px !important; font-size: 12px !important; }
     }
   </style>
 </head>
