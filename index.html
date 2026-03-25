@@ -358,8 +358,9 @@
     .s2-layout {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 64px;
-      align-items: start;
+      gap: 40px;
+      align-items: center;
+      max-width: 1000px;
     }
     .s2-cards { display: flex; flex-direction: column; gap: 20px; }
     .s2-card {
@@ -924,7 +925,7 @@
       color: var(--gray);
       text-transform: uppercase;
       letter-spacing: 0.1em;
-      min-width: 120px;
+      min-width: 200px;
     }
     .pm-slider {
       flex: 1;
@@ -1129,7 +1130,9 @@
       z-index: 10000;
     }
     #slide-15 .logo-img {
-      width: 120px;
+      max-width: none !important;
+      padding: 0 !important;
+      width: 200px;
       height: auto;
       margin-bottom: 32px;
       /* logo original colors */
@@ -1209,7 +1212,7 @@
        ============================================================ -->
   <div class="photo-strip">
     <img src="https://images.pexels.com/photos/4834250/pexels-photo-4834250.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Casal gay" loading="lazy">
-    <img src="https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Homem bonito retrato close" loading="lazy">
+    <img src="https://images.pexels.com/photos/4553618/pexels-photo-4553618.jpeg?auto=compresshttps://images.pexels.com/photos/1681010/pexels-photo-4553618.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Homem bonito retrato close"cs=tinysrgb&w=600" alt="Casal gay" loading="lazy">
     <img src="https://images.pexels.com/photos/1049317/pexels-photo-1049317.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Tres homens rindo juntos" loading="lazy">
     <img src="https://images.pexels.com/photos/6621709/pexels-photo-6621709.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Momento intimo casal gay" loading="lazy">
   </div>
@@ -1233,7 +1236,7 @@
       </div>
       <div class="reveal" style="transition-delay: 0.2s;">
         <div class="s2-photo-wrap">
-          <img src="https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Homem jovem estiloso" class="s2-photo" loading="lazy">
+          <img src="https://images.pexels.com/photos/1681010/pexels-photo-4553618.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Casal gay" class="s2-photo" loading="lazy">
         </div>
       </div>
     </div>
@@ -1431,7 +1434,7 @@
         </div>
       </div>
       <div class="s6-deco-wrap reveal" style="transition-delay: 0.15s;">
-        <img src="https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg?auto=compresshttps://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Homem confiante sorrindo" class="s6-deco-img"cs=tinysrgbhttps://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Homem confiante sorrindo" class="s6-deco-img"w=600" alt="Homem estiloso" class="s6-deco-img" loading="lazy">
+        <img src="https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg?auto=compresshttps://images.pexels.com/photos/1681010/pexels-photo-4553618.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Homem confiante sorrindo" class="s6-deco-img"cs=tinysrgbhttps://images.pexels.com/photos/1681010/pexels-photo-4553618.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Homem confiante sorrindo" class="s6-deco-img"w=600" alt="Homem estiloso" class="s6-deco-img" loading="lazy">
       </div>
     </div>
   </section>
@@ -1588,22 +1591,22 @@
     </p>
 
     <div class="pink-money-sim reveal" style="transition-delay:0.15s;">
-      <!-- Slider: Assinantes -->
+      <!-- Slider: Indicações do afiliado -->
       <div class="pm-slider-row">
-        <div class="pm-slider-label">Assinantes Premium</div>
-        <input type="range" class="pm-slider" id="pmSlider" min="0" max="15000" value="2000" step="100">
-        <div class="pm-value" id="pmSubs">2.000</div>
+        <div class="pm-slider-label">Suas indicações ativas</div>
+        <input type="range" class="pm-slider" id="affSlider" min="0" max="30000" value="500" step="50">
+        <div class="pm-value" id="affSubs">500</div>
       </div>
 
-      <!-- Progress bar to 1M -->
+      <!-- Barra até 1M -->
       <div>
         <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px;">
-          <span style="font-size:12px;color:var(--gray);font-weight:600;text-transform:uppercase;letter-spacing:.1em;">Progresso até R$1M/mês</span>
-          <span style="font-family:var(--font-display);font-weight:800;color:var(--yellow);font-size:16px;" id="pmPct">14%</span>
+          <span style="font-size:12px;color:var(--gray);font-weight:600;text-transform:uppercase;letter-spacing:.1em;">Seu ganho vs R$1M/mês</span>
+          <span style="font-family:var(--font-display);font-weight:800;color:var(--yellow);font-size:16px;" id="affPct">2%</span>
         </div>
         <div class="pm-bar-wrap">
-          <div class="pm-bar" id="pmBar" style="width:14%">
-            <span class="pm-bar-label" id="pmBarLabel">R$140K</span>
+          <div class="pm-bar" id="affBar" style="width:2%">
+            <span class="pm-bar-label" id="affBarLabel">R$17K</span>
           </div>
         </div>
         <div class="pm-milestone">
@@ -1615,72 +1618,22 @@
         </div>
       </div>
 
-      <!-- Result cards — Receita YAG -->
+      <!-- Result cards -->
       <div class="pm-results">
         <div class="pm-card">
-          <div class="pm-card-label">Receita Mensal YAG</div>
-          <div class="pm-card-value gold" id="pmMrr">R$139.800</div>
-          <div class="pm-card-sub">Premium R$69,90/mês</div>
+          <div class="pm-card-label">Sua comissão/mês</div>
+          <div class="pm-card-value gold" id="affMonthly">R$17.475</div>
+          <div class="pm-card-sub">50% de R$69,90 × indicações</div>
         </div>
         <div class="pm-card">
-          <div class="pm-card-label">Receita Anual</div>
-          <div class="pm-card-value" id="pmArr">R$1.677.600</div>
-          <div class="pm-card-sub">ARR projetado</div>
+          <div class="pm-card-label">Sua comissão/ano</div>
+          <div class="pm-card-value" id="affYearly">R$209.700</div>
+          <div class="pm-card-sub">Renda recorrente anual</div>
         </div>
         <div class="pm-card">
-          <div class="pm-card-label">Pool de Afiliados</div>
-          <div class="pm-card-value" id="pmAff">R$69.900</div>
-          <div class="pm-card-sub">50% distribuído/mês</div>
-        </div>
-      </div>
-
-      <!-- Simulador do Afiliado -->
-      <div style="margin-top:32px;padding-top:32px;border-top:2px solid var(--card-border);">
-        <h3 style="font-family:var(--font-display);font-weight:800;font-size:clamp(18px,2.5vw,24px);color:var(--white);margin-bottom:4px;">Simulador do <span style="color:var(--yellow);">Afiliado</span></h3>
-        <p style="font-size:13px;color:var(--gray);font-weight:300;margin-bottom:20px;">Quanto VOCÊ pode ganhar indicando o YAG</p>
-
-        <div class="pm-slider-row">
-          <div class="pm-slider-label">Suas indicações ativas</div>
-          <input type="range" class="pm-slider" id="affSlider" min="0" max="30000" value="500" step="50">
-          <div class="pm-value" id="affSubs">500</div>
-        </div>
-
-        <!-- Barra do afiliado até 1M -->
-        <div style="margin-top:16px;">
-          <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px;">
-            <span style="font-size:12px;color:var(--gray);font-weight:600;text-transform:uppercase;letter-spacing:.1em;">Seu ganho vs R$1M/mês</span>
-            <span style="font-family:var(--font-display);font-weight:800;color:var(--yellow);font-size:16px;" id="affPct">2%</span>
-          </div>
-          <div class="pm-bar-wrap">
-            <div class="pm-bar" id="affBar" style="width:2%">
-              <span class="pm-bar-label" id="affBarLabel">R$17K</span>
-            </div>
-          </div>
-          <div class="pm-milestone">
-            <span>R$0</span>
-            <span>R$250K</span>
-            <span>R$500K</span>
-            <span>R$750K</span>
-            <span>R$1M</span>
-          </div>
-        </div>
-
-        <div class="pm-results" style="margin-top:20px;">
-          <div class="pm-card">
-            <div class="pm-card-label">Sua comissão/mês</div>
-            <div class="pm-card-value gold" id="affMonthly">R$17.475</div>
-            <div class="pm-card-sub">50% de R$69,90 × indicações</div>
-          </div>
-          <div class="pm-card">
-            <div class="pm-card-label">Sua comissão/ano</div>
-            <div class="pm-card-value" id="affYearly">R$209.700</div>
-            <div class="pm-card-sub">Renda recorrente anual</div>
-          </div>
-          <div class="pm-card">
-            <div class="pm-card-label">Meta R$1M/mês</div>
-            <div class="pm-card-value" id="affTarget">28.613</div>
-            <div class="pm-card-sub">indicações necessárias</div>
-          </div>
+          <div class="pm-card-label">Meta R$1M/mês</div>
+          <div class="pm-card-value" id="affTarget">28.613</div>
+          <div class="pm-card-sub">indicações necessárias</div>
         </div>
       </div>
 
@@ -1836,47 +1789,13 @@
     });
 
     // ---- Pink Money Simulator ----
-    const pmSlider = document.getElementById('pmSlider');
-    const pmSubs = document.getElementById('pmSubs');
-    const pmMrr = document.getElementById('pmMrr');
-    const pmArr = document.getElementById('pmArr');
-    const pmAff = document.getElementById('pmAff');
-    const pmBar = document.getElementById('pmBar');
-    const pmBarLabel = document.getElementById('pmBarLabel');
-    const pmPct = document.getElementById('pmPct');
 
     function fmt(n) {
       return n.toLocaleString('pt-BR', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
     }
 
-    function updatePinkMoney() {
-      const subs = parseInt(pmSlider.value);
-      const price = 69.90;
-      const mrr = subs * price;
-      const arr = mrr * 12;
-      const aff = mrr * 0.5;
-      const pct = Math.min((mrr / 1000000) * 100, 100);
-
-      pmSubs.textContent = fmt(subs);
-      pmMrr.textContent = 'R$' + fmt(mrr);
-      pmArr.textContent = 'R$' + fmt(arr);
-      pmAff.textContent = 'R$' + fmt(aff);
-
-      pmBar.style.width = Math.max(pct, 2) + '%';
-      pmPct.textContent = Math.round(pct) + '%';
-
-      if (mrr >= 1000000) {
-        pmBarLabel.textContent = 'R$' + (mrr / 1000000).toFixed(1) + 'M';
-      } else if (mrr >= 1000) {
-        pmBarLabel.textContent = 'R$' + fmt(Math.round(mrr / 1000)) + 'K';
-      } else {
-        pmBarLabel.textContent = 'R$' + fmt(mrr);
-      }
-    }
 
     if (pmSlider) {
-      pmSlider.addEventListener('input', updatePinkMoney);
-      updatePinkMoney();
     }
 
     // ---- Affiliate Simulator ----
