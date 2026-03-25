@@ -1172,6 +1172,122 @@
       text-transform: uppercase;
       letter-spacing: 0.3em;
     }
+
+    /* =============================================
+       COMPREHENSIVE MOBILE FIX
+       ============================================= */
+    @media (max-width: 768px) {
+      /* Base slide */
+      .slide { min-height: 100svh; padding: 0; }
+      .slide > * { padding-left: 16px !important; padding-right: 16px !important; }
+
+      /* Typography scale down */
+      .slide-title { font-size: clamp(24px, 7vw, 36px) !important; }
+      .brand-name { font-size: clamp(48px, 15vw, 80px) !important; }
+      .brand-sub { font-size: clamp(14px, 4vw, 18px) !important; }
+      .stat-number { font-size: clamp(40px, 12vw, 64px) !important; }
+
+      /* All grids stack */
+      .s2-layout,
+      .s4m-grid,
+      .s6-layout,
+      .s8-layout,
+      .timeline,
+      .s9-grid,
+      .pm-results {
+        grid-template-columns: 1fr !important;
+        gap: 16px !important;
+      }
+
+      /* Archetype cards */
+      .s5-grid { grid-template-columns: 1fr !important; gap: 16px !important; }
+
+      /* Phone mockups smaller */
+      .phones-row { gap: 8px !important; }
+      .phone-mockup { width: 120px !important; }
+      .phone-mockup.center { width: 150px !important; }
+      .phone-mockup.has-iframe { aspect-ratio: 9/19.5; }
+
+      /* Photo strip */
+      .photo-strip { gap: 4px !important; }
+      .photo-strip img { height: 120px !important; min-width: 100px !important; }
+
+      /* Cards reduce padding */
+      .s2-card { padding: 16px 18px !important; font-size: 14px !important; }
+      .s6-card { padding: 20px !important; }
+      .s9-card { padding: 20px !important; }
+
+      /* Compare table scroll */
+      .compare-table { font-size: 12px; }
+      .compare-table th, .compare-table td { padding: 10px 8px !important; }
+
+      /* Images constrain */
+      .s2-photo-wrap { aspect-ratio: 16/9 !important; max-height: 200px; }
+      .s6-deco-wrap { max-height: 250px !important; aspect-ratio: 16/9 !important; }
+      .s8-photo-wrap { max-height: 250px !important; }
+
+      /* Slide 4 grid */
+      .s4m-grid { gap: 20px !important; }
+      .s4m-grid > div:last-child { aspect-ratio: 16/9 !important; max-height: 200px; }
+
+      /* Pink Money */
+      .pink-money-sim { gap: 20px !important; }
+      .pm-slider-row { flex-direction: column !important; align-items: stretch !important; gap: 8px !important; }
+      .pm-value { text-align: left !important; font-size: 24px !important; }
+      .pm-card { padding: 16px !important; }
+      .pm-card-value { font-size: 20px !important; }
+      .pm-card-label { font-size: 10px !important; }
+
+      /* Shop */
+      .shop-grid { grid-template-columns: 1fr 1fr !important; gap: 12px !important; }
+      .shop-card-name { font-size: 13px !important; }
+      .shop-card-desc { font-size: 11px !important; }
+      .shop-card-price { font-size: 16px !important; }
+
+      /* Pills */
+      .pills-row { gap: 6px !important; }
+      .pill { font-size: 11px !important; padding: 6px 12px !important; }
+
+      /* Nav dots smaller on mobile */
+      .nav-dots { right: 8px !important; }
+      .nav-dot { width: 6px !important; height: 6px !important; }
+
+      /* CTA slide */
+      #slide-15 { padding: 32px 16px !important; }
+      #slide-15 .logo-img { width: 100px !important; }
+      .cta-headline { font-size: clamp(24px, 6vw, 32px) !important; }
+      .cta-btn { font-size: 16px !important; padding: 12px 32px !important; }
+
+      /* Scroll indicator */
+      .scroll-indicator { bottom: 20px; }
+
+      /* Stat layout */
+      .s2-stat { margin-top: 24px !important; padding-top: 16px !important; }
+      .stat-label { font-size: 14px !important; }
+
+      /* Timeline */
+      .t-phase { padding: 16px !important; }
+      .t-phase-title { font-size: 16px !important; }
+
+      /* Influencer/Embaixador */
+      .s8-quote { font-size: 16px !important; }
+      .s8-text { font-size: 14px !important; }
+      .s8-rebel { font-size: 18px !important; }
+
+      /* Partnership cards */
+      .s9-card-title { font-size: 14px !important; }
+      .s9-card p { font-size: 12px !important; }
+
+      /* Vision slide */
+      .s10-mission, .s10-vision { font-size: 14px !important; }
+    }
+
+    @media (max-width: 380px) {
+      .slide > * { padding-left: 12px !important; padding-right: 12px !important; }
+      .phone-mockup { width: 90px !important; }
+      .phone-mockup.center { width: 120px !important; }
+      .shop-grid { grid-template-columns: 1fr !important; }
+    }
   </style>
 </head>
 <body>
