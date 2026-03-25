@@ -1,0 +1,1777 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>YAG | Pitch Deck</title>
+
+  <!-- OG Meta -->
+  <meta property="og:title" content="YAG | Pitch Deck">
+  <meta property="og:description" content="A maior comunidade gay digital do Brasil. Feita por quem entende.">
+  <meta property="og:image" content="pitch-assets/logo.png">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* ========== RESET & BASE ========== */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --yellow: #FBB000;
+      --yellow-light: #FFC726;
+      --black: #000000;
+      --card: #111111;
+      --card-border: #222222;
+      --white: #FFFFFF;
+      --gray: #888888;
+      --red: #ff6b6b;
+      --font-display: 'Plus Jakarta Sans', sans-serif;
+      --font-body: 'Inter', sans-serif;
+    }
+
+    html {
+      scroll-snap-type: y mandatory;
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--black);
+      color: var(--white);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ========== GRAIN OVERLAY ========== */
+    body::after {
+      content: '';
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.02;
+      mix-blend-mode: overlay;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-repeat: repeat;
+      background-size: 256px 256px;
+    }
+
+    /* ========== SLIDES ========== */
+    .slide {
+      min-height: 100vh;
+      scroll-snap-align: start;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 60px 80px;
+      overflow: hidden;
+    }
+
+    @media (max-width: 900px) {
+      .slide { padding: 40px 32px; }
+    }
+    @media (max-width: 480px) {
+      .slide { padding: 32px 20px; }
+    }
+
+    /* ========== TYPOGRAPHY ========== */
+    h1, h2, h3 {
+      font-family: var(--font-display);
+      font-weight: 800;
+      line-height: 1.05;
+    }
+
+    .slide-title {
+      font-size: clamp(36px, 5vw, 56px);
+      margin-bottom: 48px;
+      max-width: 800px;
+    }
+
+    .stat-number {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: clamp(72px, 10vw, 140px);
+      color: var(--yellow);
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-family: var(--font-body);
+      font-weight: 300;
+      font-size: clamp(14px, 1.5vw, 18px);
+      color: var(--gray);
+      margin-top: 8px;
+    }
+
+    /* ========== BRUTALIST CARDS ========== */
+    .brutal-card {
+      background: var(--card);
+      border: 3px solid var(--card-border);
+      padding: 32px;
+      transition: all 0.2s ease;
+    }
+
+    .brutal-card:hover {
+      transform: translate(-4px, -4px);
+      box-shadow: 8px 8px 0 var(--yellow);
+      border-color: var(--yellow);
+    }
+
+    .brutal-card-active {
+      background: var(--card);
+      border: 3px solid var(--yellow);
+      box-shadow: 8px 8px 0 rgba(245, 168, 0, 0.3);
+      padding: 32px;
+    }
+
+    /* ========== PILL TAGS ========== */
+    .pill {
+      border: 2px solid var(--yellow);
+      background: transparent;
+      color: var(--yellow);
+      padding: 8px 20px;
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      display: inline-block;
+    }
+
+    /* ========== PHONE MOCKUP ========== */
+    .phone-mockup {
+      border-radius: 36px;
+      border: 3px solid #333;
+      overflow: hidden;
+      background: var(--black);
+      box-shadow: 0 20px 60px rgba(245, 168, 0, 0.15);
+      flex-shrink: 0;
+    }
+    .phone-mockup img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    /* ========== NAV DOTS ========== */
+    .nav-dots {
+      position: fixed;
+      right: 24px;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 1000;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .nav-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #333;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      padding: 0;
+    }
+    .nav-dot.active {
+      background: var(--yellow);
+      box-shadow: 0 0 12px rgba(245, 168, 0, 0.5);
+      transform: scale(1.3);
+    }
+    @media (max-width: 480px) {
+      .nav-dots { right: 12px; gap: 8px; }
+      .nav-dot { width: 8px; height: 8px; }
+    }
+
+    /* ========== REVEAL ANIMATIONS ========== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ========== SCROLL INDICATOR ========== */
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(8px); }
+    }
+    .scroll-indicator {
+      position: absolute;
+      bottom: 32px;
+      left: 50%;
+      transform: translateX(-50%);
+      animation: bounce 2s infinite;
+    }
+    .scroll-indicator svg { display: block; }
+
+    /* ========== UTILITY ========== */
+    .yellow { color: var(--yellow); }
+    .gray { color: var(--gray); }
+    .italic { font-style: italic; }
+    .uppercase { text-transform: uppercase; }
+    .ls-wide { letter-spacing: 0.3em; }
+    .fw300 { font-weight: 300; }
+    .fw400 { font-weight: 400; }
+    .fw600 { font-weight: 600; }
+    .fw700 { font-weight: 700; }
+    .fw800 { font-weight: 800; }
+    .font-display { font-family: var(--font-display); }
+    .font-body { font-family: var(--font-body); }
+
+    /* ========== SLIDE BG PHOTO ========== */
+    .slide-bg-photo {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background-size: cover;
+      background-position: center;
+      z-index: 0;
+    }
+    .slide-bg-photo::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+    }
+
+    /* ===================================================
+       SLIDE 1 — CAPA
+       =================================================== */
+    #slide-1 {
+      background: #FBB000;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      z-index: 10000;
+      text-align: center;
+    }
+    #slide-1 .logo-img {
+      width: clamp(140px, 20vw, 200px);
+      height: auto;
+      margin-bottom: 24px;
+      /* logo original colors */
+    }
+    #slide-1 .brand-name {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: clamp(60px, 8vw, 80px);
+      color: var(--black);
+      line-height: 1;
+      margin-bottom: 12px;
+      text-shadow: 3px 3px 0 rgba(245, 168, 0, 0.4);
+    }
+    #slide-1 .brand-sub {
+      font-family: var(--font-body);
+      font-weight: 300;
+      font-size: clamp(14px, 2vw, 20px);
+      color: rgba(0, 0, 0, 0.7);
+      text-transform: uppercase;
+      letter-spacing: 0.3em;
+    }
+    #slide-1 .tagline {
+      font-family: var(--font-body);
+      font-weight: 400;
+      font-size: clamp(14px, 1.5vw, 18px);
+      color: rgba(0, 0, 0, 0.55);
+      margin-top: 16px;
+      font-style: italic;
+    }
+    #slide-1 .scroll-indicator svg {
+      fill: none;
+      stroke: var(--black);
+      stroke-width: 2;
+    }
+
+    /* ===================================================
+       PHOTO STRIP (between slide 1 and 2)
+       =================================================== */
+    .photo-strip {
+      display: flex;
+      height: 45vh;
+      overflow: hidden;
+    }
+    .photo-strip img {
+      flex: 1 1 25%;
+      min-width: 0;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      filter: grayscale(100%) contrast(1.1);
+      opacity: 0.85;
+      transition: filter 0.4s ease, opacity 0.4s ease;
+    }
+    .photo-strip img:hover {
+      filter: grayscale(0%) contrast(1.05);
+      opacity: 1;
+    }
+
+    /* ===================================================
+       SLIDE 2 — O PROBLEMA
+       =================================================== */
+    #slide-2 { background: var(--black); }
+    .s2-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: start;
+    }
+    .s2-cards { display: flex; flex-direction: column; gap: 20px; }
+    .s2-card {
+      background: var(--card);
+      border: 2px solid var(--card-border);
+      padding: 24px 28px;
+      font-size: clamp(15px, 1.5vw, 18px);
+      font-weight: 400;
+      line-height: 1.4;
+      box-shadow: 6px 6px 0 var(--yellow);
+    }
+    .s2-card span { color: var(--yellow); font-weight: 700; margin-right: 10px; }
+    .s2-photo-wrap {
+      width: 100%;
+      aspect-ratio: 3/4;
+      overflow: hidden;
+    }
+    .s2-photo {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      filter: grayscale(40%) contrast(1.1);
+      opacity: 0.7;
+    }
+    .s2-stat {
+      margin-top: 48px;
+      padding-top: 32px;
+      border-top: 2px solid var(--card-border);
+    }
+    .s2-stat .stat-number { font-size: clamp(56px, 8vw, 100px); }
+
+    @media (max-width: 900px) {
+      .s2-layout { grid-template-columns: 1fr; gap: 32px; }
+      .s2-photo-wrap { aspect-ratio: 16/9; }
+    }
+
+    /* ===================================================
+       SLIDE 3 — A OPORTUNIDADE
+       =================================================== */
+    #slide-3 { background: var(--black); }
+    .s3-bg {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: url('https://images.pexels.com/photos/1049317/pexels-photo-1049317.jpeg?auto=compress&cs=tinysrgb&w=1200') center/cover;
+      opacity: 0.08;
+      z-index: 0;
+    }
+    #slide-3 > * { position: relative; z-index: 1; }
+    .s3-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+      margin-top: 16px;
+    }
+    .s3-stat-block {
+      background: var(--card);
+      border: 3px solid var(--card-border);
+      padding: 40px 32px;
+      text-align: center;
+    }
+    .s3-stat-block:hover {
+      border-color: var(--yellow);
+      box-shadow: 8px 8px 0 rgba(245, 168, 0, 0.25);
+      transform: translate(-4px, -4px);
+      transition: all 0.2s ease;
+    }
+    .s3-sub {
+      margin-top: 48px;
+      font-size: clamp(16px, 1.8vw, 22px);
+      color: var(--gray);
+      font-style: italic;
+      font-weight: 300;
+      max-width: 700px;
+    }
+
+    @media (max-width: 900px) {
+      .s3-stats { grid-template-columns: 1fr; }
+    }
+
+    /* ===================================================
+       SLIDE 4 — O MOVIMENTO (novo)
+       =================================================== */
+    @media (max-width: 900px) {
+      .s4m-grid { grid-template-columns: 1fr !important; }
+    }
+
+    /* ===================================================
+       SLIDE 5 — ARQUÉTIPOS (novo)
+       =================================================== */
+    @media (max-width: 900px) {
+      .s5a-grid { grid-template-columns: 1fr !important; }
+    }
+
+    /* ===================================================
+       SLIDE 6 — O PRODUTO
+       =================================================== */
+    #slide-6 { background: var(--black); align-items: center; text-align: center; }
+    .phones-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 24px;
+      margin: 48px 0 40px;
+    }
+    .phones-row .phone-mockup { width: 200px; }
+    .phones-row .phone-mockup.center {
+      width: 240px;
+      transform: scale(1.1);
+      z-index: 2;
+      box-shadow: 0 30px 80px rgba(245, 168, 0, 0.2);
+    }
+    .phones-row .phone-mockup.left { transform: perspective(800px) rotateY(8deg) scale(0.9); opacity: 0.85; }
+    .phones-row .phone-mockup.right { transform: perspective(800px) rotateY(-8deg) scale(0.9); opacity: 0.85; }
+    .pills-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+      margin-bottom: 32px;
+    }
+    .s4-bottom {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: clamp(18px, 2vw, 24px);
+      color: var(--yellow);
+    }
+
+    @media (max-width: 900px) {
+      .phones-row { gap: 12px; }
+      .phones-row .phone-mockup { width: 140px; }
+      .phones-row .phone-mockup.center { width: 170px; }
+    }
+    @media (max-width: 480px) {
+      .phones-row .phone-mockup { width: 100px; }
+      .phones-row .phone-mockup.center { width: 130px; }
+    }
+
+    /* ===================================================
+       SLIDE 7 — DIFERENCIAL
+       =================================================== */
+    #slide-7 { background: var(--black); }
+    .s5-bg {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: url('https://images.pexels.com/photos/6670228/pexels-photo-6670228.jpeg?auto=compress&cs=tinysrgb&w=1200') center/cover;
+      opacity: 0.05;
+      z-index: 0;
+    }
+    #slide-7 > * { position: relative; z-index: 1; }
+    .compare-table {
+      width: 100%;
+      max-width: 800px;
+      border-collapse: collapse;
+      margin-top: 16px;
+    }
+    .compare-table th {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: clamp(20px, 2.5vw, 28px);
+      padding: 20px 32px;
+      text-align: left;
+      border-bottom: 3px solid var(--yellow);
+    }
+    .compare-table th:first-child { width: 50%; }
+    .compare-table th.yag-col { color: var(--yellow); }
+    .compare-table th.eles-col {
+      color: var(--gray);
+      text-decoration: line-through;
+    }
+    .compare-table td {
+      padding: 18px 32px;
+      font-size: clamp(14px, 1.5vw, 17px);
+      border-bottom: 1px solid var(--card-border);
+      vertical-align: middle;
+    }
+    .compare-table td:first-child { font-weight: 600; }
+    .check { color: var(--yellow); font-weight: 700; font-size: 20px; }
+    .xmark { color: var(--red); font-weight: 700; font-size: 20px; }
+
+    @media (max-width: 480px) {
+      .compare-table th, .compare-table td { padding: 14px 16px; }
+    }
+
+    /* ===================================================
+       SLIDE 8 — MODELO DE NEGOCIO
+       =================================================== */
+    #slide-8 { background: var(--black); }
+    .s6-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      margin-top: 16px;
+      align-items: start;
+    }
+    .s6-cards-col {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+    .s6-card {
+      background: var(--card);
+      border: 3px solid var(--yellow);
+      box-shadow: 8px 8px 0 rgba(245, 168, 0, 0.3);
+      padding: 40px 36px;
+    }
+    .s6-card-title {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 20px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 20px;
+      color: var(--gray);
+    }
+    .s6-price {
+      font-family: var(--font-display);
+      font-weight: 800;
+      color: var(--yellow);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+    .s6-price-sub {
+      font-weight: 300;
+      color: var(--gray);
+      font-size: 16px;
+      margin-bottom: 24px;
+    }
+    .s6-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .s6-list li {
+      font-size: 15px;
+      font-weight: 400;
+      color: var(--white);
+      padding-left: 20px;
+      position: relative;
+    }
+    .s6-list li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 8px;
+      width: 8px;
+      height: 8px;
+      background: var(--yellow);
+    }
+    .s6-deco-wrap {
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 3/4;
+      max-height: 560px;
+    }
+    .s6-deco-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      filter: grayscale(40%) contrast(1.1);
+    }
+    .s6-deco-wrap::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: linear-gradient(135deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.8) 100%);
+    }
+
+    @media (max-width: 900px) {
+      .s6-layout { grid-template-columns: 1fr; }
+      .s6-deco-wrap { aspect-ratio: 16/9; max-height: 300px; }
+    }
+
+    /* ===================================================
+       SLIDE 9 — PLANO 90 DIAS
+       =================================================== */
+    #slide-9 { background: var(--black); }
+    .s7-bg {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: url('https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=1200&q=80') center/cover;
+      opacity: 0.06;
+      z-index: 0;
+    }
+    #slide-9 > * { position: relative; z-index: 1; }
+    .timeline {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      margin-top: 24px;
+      position: relative;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      top: 60px;
+      left: 10%;
+      right: 10%;
+      height: 3px;
+      background: var(--yellow);
+      z-index: 0;
+    }
+    .tl-block {
+      position: relative;
+      z-index: 1;
+      padding: 0 16px;
+    }
+    .tl-month {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: clamp(48px, 6vw, 80px);
+      color: var(--yellow);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+    .tl-title {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: clamp(18px, 2vw, 24px);
+      color: var(--white);
+      margin-bottom: 16px;
+    }
+    .tl-card {
+      background: var(--card);
+      border: 2px solid var(--card-border);
+      padding: 24px;
+    }
+    .tl-card:hover {
+      border-color: var(--yellow);
+      box-shadow: 6px 6px 0 rgba(245, 168, 0, 0.25);
+      transform: translate(-3px, -3px);
+      transition: all 0.2s ease;
+    }
+    .tl-card ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .tl-card li {
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--gray);
+      padding-left: 16px;
+      position: relative;
+    }
+    .tl-card li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 6px;
+      width: 6px;
+      height: 6px;
+      background: var(--yellow);
+    }
+
+    @media (max-width: 900px) {
+      .timeline { grid-template-columns: 1fr; gap: 32px; }
+      .timeline::before { display: none; }
+    }
+
+    /* ===================================================
+       SLIDE 10 — POR QUE INFLUENCERS
+       =================================================== */
+    #slide-10 { background: var(--black); }
+    .s8-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+    .s8-photo-wrap {
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 3/4;
+    }
+    .s8-photo {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      filter: grayscale(30%) contrast(1.1);
+    }
+    .s8-photo-wrap::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: linear-gradient(to right, transparent 60%, var(--black) 100%);
+    }
+    .s8-quote {
+      border-left: 4px solid var(--yellow);
+      padding: 20px 28px;
+      font-size: clamp(17px, 1.8vw, 22px);
+      font-weight: 300;
+      font-style: italic;
+      color: var(--white);
+      margin: 32px 0;
+      line-height: 1.6;
+    }
+    .s8-text {
+      font-size: clamp(15px, 1.5vw, 17px);
+      font-weight: 300;
+      color: var(--gray);
+      line-height: 1.7;
+      margin-bottom: 24px;
+    }
+    .s8-rebel {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: clamp(20px, 2.5vw, 28px);
+      color: var(--yellow);
+    }
+
+    @media (max-width: 900px) {
+      .s8-layout { grid-template-columns: 1fr; gap: 32px; }
+      .s8-photo-wrap { aspect-ratio: 16/9; }
+      .s8-photo-wrap::after {
+        background: linear-gradient(to top, var(--black) 10%, transparent 60%);
+      }
+    }
+
+    /* ===================================================
+       SLIDE 11 — PROGRAMA DE PARCERIA
+       =================================================== */
+    #slide-11 { background: var(--black); }
+    .s9-bg {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: url('https://images.pexels.com/photos/1049317/pexels-photo-1049317.jpeg?auto=compress&cs=tinysrgb&w=1200') center/cover;
+      opacity: 0.06;
+      z-index: 0;
+    }
+    #slide-11 > * { position: relative; z-index: 1; }
+    .s9-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      margin-top: 16px;
+    }
+    .s9-card {
+      background: var(--card);
+      border: 2px solid var(--card-border);
+      padding: 32px;
+      transition: all 0.2s ease;
+    }
+    .s9-card:hover {
+      border-color: var(--yellow);
+      box-shadow: 8px 8px 0 var(--yellow);
+      transform: translate(-4px, -4px);
+    }
+    .s9-card:last-child {
+      grid-column: 1 / -1;
+      max-width: 50%;
+      justify-self: center;
+    }
+    .s9-icon {
+      width: 40px;
+      height: 40px;
+      margin-bottom: 16px;
+    }
+    .s9-card-title {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 18px;
+      color: var(--yellow);
+      margin-bottom: 10px;
+    }
+    .s9-card-text {
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--gray);
+      line-height: 1.6;
+    }
+
+    @media (max-width: 900px) {
+      .s9-grid { grid-template-columns: 1fr; }
+      .s9-card:last-child { max-width: 100%; }
+    }
+
+    /* ===================================================
+       SLIDE 12 — VISAO
+       =================================================== */
+    #slide-12 {
+      background: var(--black);
+      justify-content: center;
+      position: relative;
+    }
+    @media (max-width: 900px) {
+      .s10-grid { grid-template-columns: 1fr !important; }
+    }
+    .s10-bg {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: url('https://images.pexels.com/photos/6315243/pexels-photo-6315243.jpeg?auto=compress&cs=tinysrgb&w=1200') center/cover;
+      z-index: 0;
+    }
+    .s10-bg::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.80);
+    }
+    #slide-12 > * { position: relative; z-index: 1; }
+    .s10-main {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: clamp(32px, 4.5vw, 48px);
+      color: var(--yellow);
+      margin-bottom: 12px;
+      max-width: 800px;
+    }
+    .s10-second {
+      font-family: var(--font-display);
+      font-weight: 300;
+      font-size: clamp(22px, 3vw, 32px);
+      color: var(--white);
+      margin-bottom: 48px;
+    }
+    .s10-closing {
+      font-size: clamp(16px, 1.8vw, 20px);
+      color: var(--gray);
+      font-style: italic;
+      font-weight: 300;
+    }
+
+    /* ===================================================
+       SLIDE 13 — PINK MONEY (Simulador de Receita)
+       =================================================== */
+    #slide-13 { background: var(--black); }
+    #slide-13 > * { position: relative; z-index: 1; }
+
+    .pink-money-sim {
+      margin-top: 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+      max-width: 900px;
+    }
+    .pm-slider-row {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .pm-slider-label {
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--gray);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      min-width: 120px;
+    }
+    .pm-slider {
+      flex: 1;
+      min-width: 200px;
+      -webkit-appearance: none;
+      appearance: none;
+      height: 6px;
+      background: var(--card-border);
+      border-radius: 3px;
+      outline: none;
+    }
+    .pm-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 22px; height: 22px;
+      background: var(--yellow);
+      border-radius: 50%;
+      cursor: pointer;
+      box-shadow: 0 0 12px rgba(251,176,0,0.5);
+    }
+    .pm-slider::-moz-range-thumb {
+      width: 22px; height: 22px;
+      background: var(--yellow);
+      border-radius: 50%;
+      border: none;
+      cursor: pointer;
+    }
+    .pm-value {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: clamp(24px, 3vw, 36px);
+      color: var(--yellow);
+      min-width: 140px;
+      text-align: right;
+    }
+
+    .pm-results {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .pm-card {
+      background: var(--card);
+      border: 2px solid var(--card-border);
+      padding: 28px 24px;
+      transition: all 0.3s ease;
+    }
+    .pm-card:hover {
+      border-color: var(--yellow);
+      box-shadow: 6px 6px 0 rgba(251,176,0,0.2);
+    }
+    .pm-card-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--gray);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 12px;
+    }
+    .pm-card-value {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: clamp(22px, 3vw, 32px);
+      color: var(--white);
+      line-height: 1;
+    }
+    .pm-card-value.gold { color: var(--yellow); }
+    .pm-card-sub {
+      font-size: 13px;
+      color: var(--gray);
+      margin-top: 8px;
+      font-weight: 300;
+    }
+
+    .pm-bar-wrap {
+      margin-top: 8px;
+      height: 32px;
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      position: relative;
+      overflow: hidden;
+    }
+    .pm-bar {
+      height: 100%;
+      background: linear-gradient(90deg, var(--yellow), #FF8A3C);
+      transition: width 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+    }
+    .pm-bar-label {
+      position: absolute; right: 8px; top: 50%; transform: translateY(-50%);
+      font-family: var(--font-display); font-weight: 800; font-size: 13px;
+      color: var(--black);
+    }
+    .pm-milestone {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 6px;
+      font-size: 11px;
+      color: var(--gray);
+      font-weight: 600;
+    }
+
+    .pm-note {
+      font-size: 13px;
+      color: var(--gray);
+      font-weight: 300;
+      font-style: italic;
+      margin-top: 8px;
+    }
+
+    @media (max-width: 900px) {
+      .pm-results { grid-template-columns: 1fr; }
+      .pm-slider-row { flex-direction: column; align-items: stretch; }
+      .pm-value { text-align: left; }
+    }
+
+    /* ===================================================
+       SLIDE 14 — LOJA YAG (Identidade Visual)
+       =================================================== */
+    #slide-14 { background: var(--black); }
+
+    .shop-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 24px;
+      margin-top: 32px;
+    }
+    .shop-card {
+      background: var(--card);
+      border: 2px solid var(--card-border);
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+    .shop-card:hover {
+      border-color: var(--yellow);
+      box-shadow: 6px 6px 0 rgba(251,176,0,0.2);
+      transform: translate(-3px, -3px);
+    }
+    .shop-card-img {
+      width: 100%;
+      aspect-ratio: 1;
+      background: #1a1a1a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 48px;
+      color: var(--yellow);
+      overflow: hidden;
+    }
+    .shop-card-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .shop-card-body { padding: 20px; }
+    .shop-card-name {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 16px;
+      color: var(--white);
+      margin-bottom: 6px;
+    }
+    .shop-card-desc {
+      font-size: 13px;
+      color: var(--gray);
+      font-weight: 300;
+      line-height: 1.5;
+      margin-bottom: 12px;
+    }
+    .shop-card-price {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 20px;
+      color: var(--yellow);
+    }
+    .shop-card-tag {
+      display: inline-block;
+      margin-top: 8px;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      padding: 4px 10px;
+      border: 1px solid var(--yellow);
+      color: var(--yellow);
+    }
+
+    @media (max-width: 600px) {
+      .shop-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+      .shop-card-body { padding: 14px; }
+    }
+
+    /* ===================================================
+       SLIDE 15 — CTA
+       =================================================== */
+    #slide-15 {
+      background: #FBB000;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      z-index: 10000;
+    }
+    #slide-15 .logo-img {
+      width: 120px;
+      height: auto;
+      margin-bottom: 32px;
+      /* logo original colors */
+    }
+    .cta-headline {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: clamp(32px, 4.5vw, 48px);
+      color: var(--black);
+      margin-bottom: 32px;
+      max-width: 600px;
+    }
+    .cta-btn {
+      display: inline-block;
+      background: var(--black);
+      color: var(--yellow);
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 20px;
+      padding: 16px 48px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.3);
+      transition: all 0.2s ease;
+    }
+    .cta-btn:hover {
+      transform: translate(-3px, -3px);
+      box-shadow: 9px 9px 0 rgba(0, 0, 0, 0.4);
+    }
+    .cta-sub {
+      margin-top: 24px;
+      font-family: var(--font-body);
+      font-weight: 300;
+      font-size: 16px;
+      color: rgba(0, 0, 0, 0.6);
+      text-transform: uppercase;
+      letter-spacing: 0.3em;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV DOTS -->
+  <nav class="nav-dots" aria-label="Navegacao de slides">
+    <button class="nav-dot active" data-slide="1" aria-label="Slide 1"></button>
+    <button class="nav-dot" data-slide="2" aria-label="Slide 2"></button>
+    <button class="nav-dot" data-slide="3" aria-label="Slide 3"></button>
+    <button class="nav-dot" data-slide="4" aria-label="Slide 4"></button>
+    <button class="nav-dot" data-slide="5" aria-label="Slide 5"></button>
+    <button class="nav-dot" data-slide="6" aria-label="Slide 6"></button>
+    <button class="nav-dot" data-slide="7" aria-label="Slide 7"></button>
+    <button class="nav-dot" data-slide="8" aria-label="Slide 8"></button>
+    <button class="nav-dot" data-slide="9" aria-label="Slide 9"></button>
+    <button class="nav-dot" data-slide="10" aria-label="Slide 10"></button>
+    <button class="nav-dot" data-slide="11" aria-label="Slide 11"></button>
+    <button class="nav-dot" data-slide="12" aria-label="Slide 12"></button>
+    <button class="nav-dot" data-slide="13" aria-label="Slide 13"></button>
+    <button class="nav-dot" data-slide="14" aria-label="Slide 14"></button>
+    <button class="nav-dot" data-slide="15" aria-label="Slide 15"></button>
+  </nav>
+
+  <!-- ============================================================
+       SLIDE 1 — CAPA (Yag sem duplicata, com tagline)
+       ============================================================ -->
+  <section id="slide-1" class="slide">
+    <img src="pitch-assets/logo.png" alt="YAG Logo" class="logo-img reveal">
+    <h1 class="brand-name reveal" style="transition-delay: 0.1s;">Yag</h1>
+    <p class="brand-sub reveal" style="transition-delay: 0.2s;">A rede feita por quem entende.</p>
+    <div class="scroll-indicator">
+      <svg width="24" height="24" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9" fill="none" stroke="var(--black)" stroke-width="2"/></svg>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       PHOTO STRIP — Galeria visual YAG
+       ============================================================ -->
+  <div class="photo-strip">
+    <img src="https://images.pexels.com/photos/4834250/pexels-photo-4834250.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Casal gay" loading="lazy">
+    <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=1200&q=80" alt="Homem bonito retrato close" loading="lazy">
+    <img src="https://images.pexels.com/photos/1049317/pexels-photo-1049317.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Tres homens rindo juntos" loading="lazy">
+    <img src="https://images.pexels.com/photos/6621709/pexels-photo-6621709.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Momento intimo casal gay" loading="lazy">
+  </div>
+
+  <!-- ============================================================
+       SLIDE 2 — O PROBLEMA
+       ============================================================ -->
+  <section id="slide-2" class="slide">
+    <h2 class="slide-title reveal">O mundo gay digital<br><span class="yellow">tá quebrado.</span></h2>
+    <div class="s2-layout">
+      <div class="s2-cards">
+        <div class="s2-card reveal" style="transition-delay: 0.1s;">
+          <span>01</span> Apps que reduzem você a uma foto de grid
+        </div>
+        <div class="s2-card reveal" style="transition-delay: 0.2s;">
+          <span>02</span> Bots, fakes, perfis vazios em todo lugar
+        </div>
+        <div class="s2-card reveal" style="transition-delay: 0.3s;">
+          <span>03</span> Nenhum espaço real de comunidade
+        </div>
+      </div>
+      <div class="reveal" style="transition-delay: 0.2s;">
+        <div class="s2-photo-wrap">
+          <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=1200&q=80" alt="Homem elegante de terno confiante" class="s2-photo" loading="lazy">
+        </div>
+      </div>
+    </div>
+    <div class="s2-stat reveal" style="transition-delay: 0.4s;">
+      <span class="stat-number">20M+</span>
+      <p class="stat-label">de gays no Brasil. Zero plataformas brasileiras.</p>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SLIDE 3 — A OPORTUNIDADE (com foto de fundo sutil)
+       ============================================================ -->
+  <section id="slide-3" class="slide">
+    <div class="s3-bg"></div>
+    <h2 class="slide-title reveal">Ninguém domina<br><span class="yellow">esse espaço.</span></h2>
+    <div class="s3-stats">
+      <div class="s3-stat-block reveal" style="transition-delay: 0.1s;">
+        <div class="stat-number">0</div>
+        <div class="stat-label">Players brasileiros</div>
+      </div>
+      <div class="s3-stat-block reveal" style="transition-delay: 0.2s;">
+        <div class="stat-number" style="font-size: clamp(48px, 7vw, 100px);">R$150bi</div>
+        <div class="stat-label">Mercado LGBTQ+ Brasil/ano</div>
+      </div>
+      <div class="s3-stat-block reveal" style="transition-delay: 0.3s;">
+        <div class="stat-number">#1</div>
+        <div class="stat-label">É o que o YAG vai ser</div>
+      </div>
+    </div>
+    <p class="s3-sub reveal" style="transition-delay: 0.4s;">Grindr é gringo. Hornet tá morrendo. O timing é agora.</p>
+  </section>
+
+  <!-- ============================================================
+       SLIDE 4 — O MOVIMENTO (novo)
+       ============================================================ -->
+  <section id="slide-4" class="slide" style="background: #000;">
+    <h2 class="slide-title reveal">Não é um app.<br><span class="yellow">É um movimento.</span></h2>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; max-width: 1000px;" class="s4m-grid">
+      <div>
+        <p class="reveal" style="transition-delay: 0.1s; font-size: clamp(17px, 1.8vw, 22px); font-weight: 300; line-height: 1.7; color: #ccc; margin-bottom: 24px;">
+          O YAG nasceu da frustração de não ter nenhum espaço digital feito por gays brasileiros, para gays brasileiros. Sem filtro. Sem julgamento. Sem medo.
+        </p>
+        <p class="reveal" style="transition-delay: 0.2s; font-size: clamp(17px, 1.8vw, 22px); font-weight: 300; line-height: 1.7; color: #ccc; margin-bottom: 32px;">
+          Enquanto os apps gringos tratam a comunidade como produto, o YAG trata como prioridade.
+        </p>
+        <p class="reveal" style="transition-delay: 0.3s; font-family: var(--font-display); font-weight: 800; font-size: clamp(20px, 2.5vw, 28px); color: var(--yellow);">
+          "A gente sempre precisou se esconder. Até agora."
+        </p>
+      </div>
+      <div class="reveal" style="transition-delay: 0.2s; position: relative; overflow: hidden; aspect-ratio: 3/4;">
+        <img src="https://images.pexels.com/photos/6315243/pexels-photo-6315243.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Conexão real" style="width: 100%; height: 100%; object-fit: cover; object-position: top center; filter: grayscale(20%) contrast(1.1);" loading="lazy">
+        <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(to right, #000 0%, transparent 30%);"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SLIDE 5 — ARQUÉTIPOS (novo)
+       ============================================================ -->
+  <section id="slide-5" class="slide" style="background: #000;">
+    <h2 class="slide-title reveal">DNA da marca:<br><span class="yellow">Rebelde + Amante</span></h2>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; max-width: 1000px;" class="s5a-grid">
+      <!-- REBELDE -->
+      <div class="brutal-card reveal" style="transition-delay: 0.1s; border-top: 4px solid var(--yellow); padding: 36px;">
+        <div style="font-family: var(--font-display); font-weight: 800; font-size: clamp(48px, 6vw, 72px); color: var(--yellow); line-height: 1; margin-bottom: 8px;">70%</div>
+        <div style="font-family: var(--font-display); font-weight: 800; font-size: 22px; color: #fff; margin-bottom: 16px; text-transform: uppercase; letter-spacing: 0.05em;">Rebelde</div>
+        <p style="font-size: 15px; font-weight: 300; color: #999; line-height: 1.6; margin-bottom: 16px;">Direto, corajoso, sem rodeio. Polariza, gera movimento. Existir como gay no Brasil já é um ato de rebeldia.</p>
+        <div style="border-top: 1px solid #333; padding-top: 16px; margin-top: 8px;">
+          <p style="font-size: 14px; color: #666; line-height: 1.6;"><span style="color: var(--yellow); font-weight: 600;">Copy:</span> "Cansou de app que te trata como produto?"</p>
+          <p style="font-size: 14px; color: #666; line-height: 1.6; margin-top: 8px;"><span style="color: var(--yellow); font-weight: 600;">Tom:</span> Provocação indireta, humor ácido, posicionamento forte</p>
+        </div>
+      </div>
+
+      <!-- AMANTE -->
+      <div class="brutal-card reveal" style="transition-delay: 0.2s; border-top: 4px solid #e84393; padding: 36px;">
+        <div style="font-family: var(--font-display); font-weight: 800; font-size: clamp(48px, 6vw, 72px); color: #e84393; line-height: 1; margin-bottom: 8px;">30%</div>
+        <div style="font-family: var(--font-display); font-weight: 800; font-size: 22px; color: #fff; margin-bottom: 16px; text-transform: uppercase; letter-spacing: 0.05em;">Amante</div>
+        <p style="font-size: 15px; font-weight: 300; color: #999; line-height: 1.6; margin-bottom: 16px;">Conexão profunda, intimidade, pertencimento. Não o amante romântico — o amante como calor humano.</p>
+        <div style="border-top: 1px solid #333; padding-top: 16px; margin-top: 8px;">
+          <p style="font-size: 14px; color: #666; line-height: 1.6;"><span style="color: #e84393; font-weight: 600;">Copy:</span> "Aqui você é nome, não número."</p>
+          <p style="font-size: 14px; color: #666; line-height: 1.6; margin-top: 8px;"><span style="color: #e84393; font-weight: 600;">Tom:</span> Acolhimento, pertencimento, conexão real</p>
+        </div>
+      </div>
+    </div>
+
+    <p class="reveal" style="transition-delay: 0.3s; margin-top: 48px; font-family: var(--font-display); font-weight: 800; font-size: clamp(18px, 2vw, 24px); color: var(--yellow); max-width: 600px; text-align: center; align-self: center;">
+      "Rebeldes por fora, íntimos por dentro."
+    </p>
+  </section>
+
+  <!-- ============================================================
+       SLIDE 6 — O PRODUTO (sem Forums)
+       ============================================================ -->
+  <section id="slide-6" class="slide">
+    <h2 class="slide-title reveal" style="text-align: center; margin-left: auto; margin-right: auto;">Mais que um app.<br><span class="yellow">Uma comunidade.</span></h2>
+
+    <div class="phones-row reveal" style="transition-delay: 0.15s;">
+      <div class="phone-mockup left">
+        <img src="pitch-assets/chat.png" alt="YAG Chat" loading="lazy">
+      </div>
+      <div class="phone-mockup center">
+        <img src="pitch-assets/feed.png" alt="YAG Feed" loading="lazy">
+      </div>
+      <div class="phone-mockup right">
+        <img src="pitch-assets/radar.png" alt="YAG Radar" loading="lazy">
+      </div>
+    </div>
+
+    <div class="pills-row reveal" style="transition-delay: 0.25s;">
+      <span class="pill">Feed</span>
+      <span class="pill">Radar</span>
+      <span class="pill">Chat</span>
+      <span class="pill">Buscar</span>
+      <span class="pill">Eventos</span>
+    </div>
+
+    <p class="s4-bottom reveal" style="transition-delay: 0.35s;">Perfis verificados. Zero bots. Zero fake.</p>
+  </section>
+
+  <!-- ============================================================
+       SLIDE 7 — DIFERENCIAL
+       ============================================================ -->
+  <section id="slide-7" class="slide">
+    <div class="s5-bg"></div>
+    <h2 class="slide-title reveal">Por que o YAG<br><span class="yellow">é diferente</span></h2>
+
+    <table class="compare-table reveal" style="transition-delay: 0.15s;">
+      <thead>
+        <tr>
+          <th></th>
+          <th class="yag-col">YAG</th>
+          <th class="eles-col">Eles</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Comunidade real vs Hookup grid</td>
+          <td class="check">&#10004;</td>
+          <td class="xmark">&#10008;</td>
+        </tr>
+        <tr>
+          <td>Perfis verificados vs Bots e fakes</td>
+          <td class="check">&#10004;</td>
+          <td class="xmark">&#10008;</td>
+        </tr>
+        <tr>
+          <td>Brasileiro, em português</td>
+          <td class="check">&#10004;</td>
+          <td class="xmark">&#10008;</td>
+        </tr>
+        <tr>
+          <td>Eventos presenciais</td>
+          <td class="check">&#10004;</td>
+          <td class="xmark">&#10008;</td>
+        </tr>
+        <tr>
+          <td>Programa de afiliados</td>
+          <td class="check">&#10004;</td>
+          <td class="xmark">&#10008;</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ============================================================
+       SLIDE 8 — MODELO DE NEGOCIO (com foto decorativa lateral)
+       ============================================================ -->
+  <section id="slide-8" class="slide">
+    <h2 class="slide-title reveal">Como o YAG<br><span class="yellow">ganha dinheiro</span></h2>
+
+    <div class="s6-layout">
+      <div class="s6-cards-col">
+        <div class="s6-card reveal" style="transition-delay: 0.1s;">
+          <div class="s6-card-title">Premium</div>
+          <div class="s6-price" style="font-size: clamp(40px, 5vw, 64px);">R$69,90</div>
+          <div class="s6-price-sub">/mês</div>
+          <ul class="s6-list">
+            <li>Acesso completo</li>
+            <li>Radar ilimitado</li>
+            <li>Badges exclusivos</li>
+            <li>Prioridade no feed</li>
+          </ul>
+        </div>
+        <div class="s6-card reveal" style="transition-delay: 0.2s;">
+          <div class="s6-card-title">Afiliados</div>
+          <div class="s6-price" style="font-size: clamp(24px, 3vw, 32px);">Comissão de até 50%</div>
+          <div class="s6-price-sub">recorrente, enquanto o indicado pagar</div>
+          <ul class="s6-list">
+            <li>Você indica</li>
+            <li>Ele assina</li>
+            <li>Você recebe até 50% da assinatura, todo mês</li>
+          </ul>
+        </div>
+      </div>
+      <div class="s6-deco-wrap reveal" style="transition-delay: 0.15s;">
+        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1200&q=80" alt="Homem confiante sorrindo" class="s6-deco-img" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SLIDE 9 — PLANO 90 DIAS (com foto de fundo sutil)
+       ============================================================ -->
+  <section id="slide-9" class="slide">
+    <div class="s7-bg"></div>
+    <h2 class="slide-title reveal">Do beta ao Brasil<br><span class="yellow">em 90 dias</span></h2>
+
+    <div class="timeline">
+      <div class="tl-block reveal" style="transition-delay: 0.1s;">
+        <div class="tl-month">1</div>
+        <div class="tl-title">Beta Fechado</div>
+        <div class="tl-card">
+          <ul>
+            <li>30-100 influencers fundadores</li>
+            <li>NPS > 7</li>
+            <li>Zero bugs críticos</li>
+          </ul>
+        </div>
+      </div>
+      <div class="tl-block reveal" style="transition-delay: 0.2s;">
+        <div class="tl-month">2</div>
+        <div class="tl-title">Maceió</div>
+        <div class="tl-card">
+          <ul>
+            <li>Abertura pública</li>
+            <li>Eventos presenciais</li>
+            <li>Afiliados ativos</li>
+            <li>DAU/MAU > 35%</li>
+          </ul>
+        </div>
+      </div>
+      <div class="tl-block reveal" style="transition-delay: 0.3s;">
+        <div class="tl-month">3</div>
+        <div class="tl-title">SP + Nacional</div>
+        <div class="tl-card">
+          <ul>
+            <li>R$8K ads</li>
+            <li>Parada SP</li>
+            <li>Escala nacional</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SLIDE 10 — POR QUE INFLUENCERS (imagem com aspect-ratio)
+       ============================================================ -->
+  <section id="slide-10" class="slide">
+    <h2 class="slide-title reveal">Você não é garoto propaganda.<br><span class="yellow">É co-fundador.</span></h2>
+
+    <div class="s8-layout">
+      <div class="s8-photo-wrap reveal" style="transition-delay: 0.1s;">
+        <img src="https://images.pexels.com/photos/4746809/pexels-photo-4746809.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Dois homens rindo e olhando um pro outro" class="s8-photo" loading="lazy">
+      </div>
+      <div>
+        <blockquote class="s8-quote reveal" style="transition-delay: 0.15s;">
+          "Quem entra agora não tá divulgando um app. Tá construindo uma comunidade."
+        </blockquote>
+        <p class="s8-text reveal" style="transition-delay: 0.2s;">
+          O YAG cresce por identificação, não por ads. A voz do influencer é o canal mais poderoso que existe.
+        </p>
+        <p class="s8-rebel reveal" style="transition-delay: 0.25s;">A gente não veio pedir licença.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SLIDE 11 — PROGRAMA DE PARCERIA (com foto de fundo sutil, sem forum)
+       ============================================================ -->
+  <section id="slide-11" class="slide">
+    <div class="s9-bg"></div>
+    <h2 class="slide-title reveal">O que você <span class="yellow">ganha</span></h2>
+
+    <div class="s9-grid">
+      <div class="s9-card reveal" style="transition-delay: 0.1s;">
+        <svg class="s9-icon" viewBox="0 0 40 40" fill="none"><rect x="4" y="4" width="32" height="32" stroke="#FBB000" stroke-width="3"/><path d="M14 20h12M20 14v12" stroke="#FBB000" stroke-width="3"/></svg>
+        <div class="s9-card-title">Comissão recorrente</div>
+        <div class="s9-card-text">Ganhe por cada assinante indicado. Enquanto ele pagar, você recebe.</div>
+      </div>
+      <div class="s9-card reveal" style="transition-delay: 0.15s;">
+        <svg class="s9-icon" viewBox="0 0 40 40" fill="none"><polygon points="20,4 25,16 38,16 27,24 31,36 20,28 9,36 13,24 2,16 15,16" stroke="#FBB000" stroke-width="2.5" fill="none"/></svg>
+        <div class="s9-card-title">Badge de Fundador</div>
+        <div class="s9-card-text">Selo permanente no seu perfil. Pra sempre.</div>
+      </div>
+      <div class="s9-card reveal" style="transition-delay: 0.2s;">
+        <svg class="s9-icon" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="16" stroke="#FBB000" stroke-width="3"/><path d="M20 10v10l7 7" stroke="#FBB000" stroke-width="3" stroke-linecap="square"/></svg>
+        <div class="s9-card-title">Acesso early</div>
+        <div class="s9-card-text">Teste tudo antes de todo mundo.</div>
+      </div>
+      <div class="s9-card reveal" style="transition-delay: 0.25s;">
+        <svg class="s9-icon" viewBox="0 0 40 40" fill="none"><rect x="4" y="8" width="32" height="24" stroke="#FBB000" stroke-width="3"/><path d="M4 16h32" stroke="#FBB000" stroke-width="3"/></svg>
+        <div class="s9-card-title">Co-criação</div>
+        <div class="s9-card-text">Participe do roadmap e de eventos.</div>
+      </div>
+      <div class="s9-card reveal" style="transition-delay: 0.3s;">
+        <svg class="s9-icon" viewBox="0 0 40 40" fill="none"><path d="M20 4l4 12h12l-10 7 4 13-10-8-10 8 4-13L4 16h12z" stroke="#FBB000" stroke-width="2.5" fill="none"/></svg>
+        <div class="s9-card-title">Prioridade total</div>
+        <div class="s9-card-text">Em collabs, campanhas e parcerias futuras.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SLIDE 12 — MISSÃO, VISÃO E VALORES
+       ============================================================ -->
+  <section id="slide-12" class="slide">
+    <div class="s10-bg"></div>
+
+    <div style="position: relative; z-index: 1; max-width: 1000px;">
+      <h2 class="slide-title reveal" style="margin-bottom: 56px;">Missão, Visão<br><span class="yellow">e Valores</span></h2>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 48px;" class="s10-grid">
+        <!-- MISSÃO -->
+        <div class="brutal-card reveal" style="transition-delay: 0.1s; border-left: 4px solid var(--yellow);">
+          <div style="font-family: var(--font-display); font-weight: 800; font-size: 13px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--yellow); margin-bottom: 16px;">Missão</div>
+          <p style="font-size: clamp(18px, 2vw, 24px); font-weight: 300; line-height: 1.5;">Criar o espaço que a comunidade gay brasileira sempre mereceu. Sem julgamento. Sem filtro. Sem medo.</p>
+        </div>
+
+        <!-- VISÃO -->
+        <div class="brutal-card reveal" style="transition-delay: 0.2s; border-left: 4px solid var(--yellow);">
+          <div style="font-family: var(--font-display); font-weight: 800; font-size: 13px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--yellow); margin-bottom: 16px;">Visão</div>
+          <p style="font-size: clamp(18px, 2vw, 24px); font-weight: 300; line-height: 1.5;">Ser a maior comunidade gay digital do Brasil. Depois, do mundo.</p>
+        </div>
+      </div>
+
+      <!-- VALORES -->
+      <div class="reveal" style="transition-delay: 0.3s;">
+        <div style="font-family: var(--font-display); font-weight: 800; font-size: 13px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--yellow); margin-bottom: 24px;">Valores</div>
+        <div style="display: flex; flex-wrap: wrap; gap: 16px;">
+          <span class="pill" style="font-size: 16px; padding: 12px 28px;">Liberdade</span>
+          <span class="pill" style="font-size: 16px; padding: 12px 28px;">Autenticidade</span>
+          <span class="pill" style="font-size: 16px; padding: 12px 28px;">Conexão real</span>
+          <span class="pill" style="font-size: 16px; padding: 12px 28px;">Respeito</span>
+          <span class="pill" style="font-size: 16px; padding: 12px 28px;">Evolução</span>
+        </div>
+      </div>
+
+      <p class="reveal" style="transition-delay: 0.4s; margin-top: 48px; font-size: clamp(16px, 1.8vw, 20px); color: var(--gray); font-style: italic; font-weight: 300; position: relative; z-index: 1;">Você pode dizer que estava aqui desde o começo.</p>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SLIDE 13 — PINK MONEY (Simulador de Receita)
+       ============================================================ -->
+  <section id="slide-13" class="slide">
+    <h2 class="slide-title reveal">Pink <span class="yellow">Money</span></h2>
+    <p class="reveal" style="transition-delay:0.1s;font-size:clamp(16px,1.8vw,20px);color:var(--gray);font-weight:300;max-width:700px;">
+      O mercado LGBTQIA+ movimenta <strong style="color:var(--white)">R$150 bilhões</strong> por ano no Brasil. Veja como o YAG captura esse valor.
+    </p>
+
+    <div class="pink-money-sim reveal" style="transition-delay:0.15s;">
+      <!-- Slider: Assinantes -->
+      <div class="pm-slider-row">
+        <div class="pm-slider-label">Assinantes Premium</div>
+        <input type="range" class="pm-slider" id="pmSlider" min="0" max="15000" value="2000" step="100">
+        <div class="pm-value" id="pmSubs">2.000</div>
+      </div>
+
+      <!-- Progress bar to 1M -->
+      <div>
+        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px;">
+          <span style="font-size:12px;color:var(--gray);font-weight:600;text-transform:uppercase;letter-spacing:.1em;">Progresso até R$1M/mês</span>
+          <span style="font-family:var(--font-display);font-weight:800;color:var(--yellow);font-size:16px;" id="pmPct">14%</span>
+        </div>
+        <div class="pm-bar-wrap">
+          <div class="pm-bar" id="pmBar" style="width:14%">
+            <span class="pm-bar-label" id="pmBarLabel">R$140K</span>
+          </div>
+        </div>
+        <div class="pm-milestone">
+          <span>R$0</span>
+          <span>R$250K</span>
+          <span>R$500K</span>
+          <span>R$750K</span>
+          <span>R$1M</span>
+        </div>
+      </div>
+
+      <!-- Result cards -->
+      <div class="pm-results">
+        <div class="pm-card">
+          <div class="pm-card-label">Receita Mensal</div>
+          <div class="pm-card-value gold" id="pmMrr">R$139.800</div>
+          <div class="pm-card-sub">Premium R$69,90/mês</div>
+        </div>
+        <div class="pm-card">
+          <div class="pm-card-label">Receita Anual</div>
+          <div class="pm-card-value" id="pmArr">R$1.677.600</div>
+          <div class="pm-card-sub">ARR projetado</div>
+        </div>
+        <div class="pm-card">
+          <div class="pm-card-label">Afiliados (50%)</div>
+          <div class="pm-card-value" id="pmAff">R$69.900</div>
+          <div class="pm-card-sub">Comissão distribuída/mês</div>
+        </div>
+      </div>
+
+      <p class="pm-note">* Simulação com base em assinaturas Premium a R$69,90/mês. Não inclui receitas de loja, eventos e ads.</p>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SLIDE 14 — LOJA YAG (Identidade Visual)
+       ============================================================ -->
+  <section id="slide-14" class="slide">
+    <h2 class="slide-title reveal">Loja <span class="yellow">YAG</span></h2>
+    <p class="reveal" style="transition-delay:0.1s;font-size:clamp(16px,1.8vw,20px);color:var(--gray);font-weight:300;max-width:700px;">
+      Identidade que veste. Produtos exclusivos para quem faz parte do movimento.
+    </p>
+
+    <div class="shop-grid reveal" style="transition-delay:0.15s;">
+      <div class="shop-card">
+        <div class="shop-card-img">👕</div>
+        <div class="shop-card-body">
+          <div class="shop-card-name">Camiseta YAG Classic</div>
+          <div class="shop-card-desc">Algodão premium, logo bordado. Preta com detalhe dourado.</div>
+          <div class="shop-card-price">R$89,90</div>
+          <div class="shop-card-tag">Lançamento</div>
+        </div>
+      </div>
+      <div class="shop-card">
+        <div class="shop-card-img">🧢</div>
+        <div class="shop-card-body">
+          <div class="shop-card-name">Boné YAG Dad Hat</div>
+          <div class="shop-card-desc">Aba curva, logo lateral bordado. Ajuste em metal dourado.</div>
+          <div class="shop-card-price">R$69,90</div>
+          <div class="shop-card-tag">Lançamento</div>
+        </div>
+      </div>
+      <div class="shop-card">
+        <div class="shop-card-img">🎒</div>
+        <div class="shop-card-body">
+          <div class="shop-card-name">Ecobag YAG</div>
+          <div class="shop-card-desc">100% algodão cru, estampa serigrafada. Leve o YAG pra rua.</div>
+          <div class="shop-card-price">R$39,90</div>
+          <div class="shop-card-tag">Pré-venda</div>
+        </div>
+      </div>
+      <div class="shop-card">
+        <div class="shop-card-img">📱</div>
+        <div class="shop-card-body">
+          <div class="shop-card-name">Case YAG</div>
+          <div class="shop-card-desc">Capinha premium para iPhone e Android. Design minimalista com logo.</div>
+          <div class="shop-card-price">R$49,90</div>
+          <div class="shop-card-tag">Em breve</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SLIDE 15 — CTA
+       ============================================================ -->
+  <section id="slide-15" class="slide">
+    <img src="pitch-assets/logo.png" alt="YAG Logo" class="logo-img reveal">
+    <h2 class="cta-headline reveal" style="transition-delay: 0.1s;">Entra antes de todo mundo.</h2>
+    <a href="https://instagram.com/yag.social" target="_blank" class="cta-btn reveal" style="transition-delay: 0.2s;">@yag.social</a>
+    <p class="cta-sub reveal" style="transition-delay: 0.3s;">Yag Social</p>
+  </section>
+
+
+  <!-- ============================================================
+       JAVASCRIPT
+       ============================================================ -->
+  <script>
+    // ---- IntersectionObserver for reveal animations ----
+    const reveals = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.15 });
+    reveals.forEach(el => revealObserver.observe(el));
+
+    // ---- Active slide tracking for nav dots ----
+    const slides = document.querySelectorAll('.slide');
+    const dots = document.querySelectorAll('.nav-dot');
+
+    const slideObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const id = entry.target.id;
+          const num = id.replace('slide-', '');
+          dots.forEach(d => d.classList.remove('active'));
+          const activeDot = document.querySelector(`.nav-dot[data-slide="${num}"]`);
+          if (activeDot) activeDot.classList.add('active');
+        }
+      });
+    }, { threshold: 0.5 });
+    slides.forEach(s => slideObserver.observe(s));
+
+    // ---- Dot click navigation ----
+    dots.forEach(dot => {
+      dot.addEventListener('click', () => {
+        const num = dot.getAttribute('data-slide');
+        const target = document.getElementById('slide-' + num);
+        if (target) target.scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+
+    // ---- Keyboard navigation ----
+    let currentSlide = 1;
+    const totalSlides = 15;
+
+    function goToSlide(n) {
+      n = Math.max(1, Math.min(totalSlides, n));
+      currentSlide = n;
+      const target = document.getElementById('slide-' + n);
+      if (target) target.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    document.addEventListener('keydown', (e) => {
+      // Update current slide from active dot
+      const activeDot = document.querySelector('.nav-dot.active');
+      if (activeDot) currentSlide = parseInt(activeDot.getAttribute('data-slide'));
+
+      if (e.key === 'ArrowDown' || e.key === ' ' || e.key === 'PageDown') {
+        e.preventDefault();
+        goToSlide(currentSlide + 1);
+      } else if (e.key === 'ArrowUp' || e.key === 'PageUp') {
+        e.preventDefault();
+        goToSlide(currentSlide - 1);
+      } else if (e.key === 'Home') {
+        e.preventDefault();
+        goToSlide(1);
+      } else if (e.key === 'End') {
+        e.preventDefault();
+        goToSlide(totalSlides);
+      }
+    });
+
+    // ---- Trigger reveal for slide 1 on load ----
+    window.addEventListener('load', () => {
+      document.querySelectorAll('#slide-1 .reveal').forEach(el => {
+        el.classList.add('visible');
+      });
+    });
+
+    // ---- Pink Money Simulator ----
+    const pmSlider = document.getElementById('pmSlider');
+    const pmSubs = document.getElementById('pmSubs');
+    const pmMrr = document.getElementById('pmMrr');
+    const pmArr = document.getElementById('pmArr');
+    const pmAff = document.getElementById('pmAff');
+    const pmBar = document.getElementById('pmBar');
+    const pmBarLabel = document.getElementById('pmBarLabel');
+    const pmPct = document.getElementById('pmPct');
+
+    function fmt(n) {
+      return n.toLocaleString('pt-BR', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
+    }
+
+    function updatePinkMoney() {
+      const subs = parseInt(pmSlider.value);
+      const price = 69.90;
+      const mrr = subs * price;
+      const arr = mrr * 12;
+      const aff = mrr * 0.5;
+      const pct = Math.min((mrr / 1000000) * 100, 100);
+
+      pmSubs.textContent = fmt(subs);
+      pmMrr.textContent = 'R$' + fmt(mrr);
+      pmArr.textContent = 'R$' + fmt(arr);
+      pmAff.textContent = 'R$' + fmt(aff);
+
+      pmBar.style.width = Math.max(pct, 2) + '%';
+      pmPct.textContent = Math.round(pct) + '%';
+
+      if (mrr >= 1000000) {
+        pmBarLabel.textContent = 'R$' + (mrr / 1000000).toFixed(1) + 'M';
+      } else if (mrr >= 1000) {
+        pmBarLabel.textContent = 'R$' + fmt(Math.round(mrr / 1000)) + 'K';
+      } else {
+        pmBarLabel.textContent = 'R$' + fmt(mrr);
+      }
+    }
+
+    if (pmSlider) {
+      pmSlider.addEventListener('input', updatePinkMoney);
+      updatePinkMoney();
+    }
+  </script>
+
+</body>
+</html>
