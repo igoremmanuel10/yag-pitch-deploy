@@ -487,9 +487,13 @@
       .phones-row .phone-mockup { width: 140px; }
       .phones-row .phone-mockup.center { width: 170px; }
     }
+    @media (max-width: 768px) {
+      .phones-row .phone-mockup.left,
+      .phones-row .phone-mockup.right { display: none !important; }
+      .phones-row .phone-mockup.center { width: 220px !important; transform: none !important; }
+    }
     @media (max-width: 480px) {
-      .phones-row .phone-mockup { width: 100px; }
-      .phones-row .phone-mockup.center { width: 130px; }
+      .phones-row .phone-mockup.center { width: 200px !important; }
     }
 
     /* ===================================================
