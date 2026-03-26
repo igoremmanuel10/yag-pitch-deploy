@@ -1158,16 +1158,26 @@
        MOBILE — nuclear fix, nothing overflows
        ============================================= */
     @media (max-width: 768px) {
-      /* Global: prevent horizontal scroll, smoother scroll snap */
+      /* Global: prevent horizontal scroll, disable scroll snap on mobile */
       html, body { overflow-x: hidden !important; }
-      html { scroll-snap-type: y proximity !important; }
+      html { scroll-snap-type: none !important; }
+      .slide { scroll-snap-align: none !important; }
 
-      /* Slides: each one fills viewport */
-      .slide { min-height: 100svh; padding: 32px 16px; justify-content: center; }
+      /* Slides: auto height, no forced viewport fill */
+      .slide {
+        min-height: auto !important; padding: 48px 16px !important;
+        justify-content: flex-start !important;
+      }
+      /* Only cover slide and CTA fill viewport */
+      #slide-1, #slide-15 { min-height: 100svh !important; justify-content: center !important; }
+      /* Each slide clips its own content */
+      .slide { overflow: hidden !important; }
 
       /* All images fit */
       img, iframe { max-width: 100% !important; }
-      .slide img:not(.logo-img) { width: 100%; height: auto; object-fit: cover; }
+      .slide img:not(.logo-img):not(.s2-photo):not(.s6-deco-img):not(.s8-photo) {
+        width: 100%; height: auto; object-fit: cover;
+      }
 
       /* Typography — smaller on mobile */
       .slide-title { font-size: clamp(22px, 6.5vw, 32px) !important; line-height: 1.15 !important; margin-bottom: 24px !important; }
@@ -1185,17 +1195,25 @@
         grid-template-columns: 1fr !important;
       }
 
-      /* Photo wrappers — show full image, no crop */
-      .s2-photo-wrap, .s6-deco-wrap, .s8-photo-wrap,
-      .s4m-grid > div:last-child {
-        width: 100% !important; max-height: 280px !important;
+      /* Photo wrappers — compact on mobile, no crop */
+      .s2-photo-wrap, .s6-deco-wrap, .s8-photo-wrap {
+        width: 100% !important; height: 180px !important;
+        max-height: 180px !important;
         aspect-ratio: auto !important; overflow: hidden !important;
         border-radius: 8px;
       }
-      .s2-photo, .s6-deco-img, .s8-photo {
+      .s4m-grid > div:last-child {
+        width: 100% !important; height: 200px !important;
+        max-height: 200px !important;
+        aspect-ratio: auto !important; overflow: hidden !important;
+        border-radius: 8px;
+        position: relative !important;
+      }
+      .s2-photo, .s6-deco-img, .s8-photo,
+      .s4m-grid > div:last-child img {
         filter: none !important; opacity: 1 !important;
         width: 100% !important; height: 100% !important;
-        object-fit: cover !important; object-position: center !important;
+        object-fit: cover !important; object-position: center top !important;
       }
 
       /* Photo strip — horizontal scroll, full visible images */
@@ -1240,6 +1258,8 @@
       /* Archetype cards (Slide 5) */
       .s5a-grid .brutal-card { padding: 24px !important; }
       .s5a-grid .brutal-card p { font-size: 14px !important; }
+      /* Hide slide 5 ::before bg image on mobile — it bleeds into other slides */
+      #slide-5::before { display: none !important; }
 
       /* Compare table — stacked cards on mobile */
       .compare-table { font-size: 13px !important; }
@@ -1431,6 +1451,8 @@
       .pm-slider-row { padding: 16px !important; }
       .pm-card { padding: 16px !important; }
       .photo-strip img { height: 160px !important; min-width: 60vw !important; }
+      .s2-photo-wrap, .s6-deco-wrap, .s8-photo-wrap { height: 150px !important; max-height: 150px !important; }
+      .s4m-grid > div:last-child { height: 160px !important; max-height: 160px !important; }
       .s2-card { padding: 10px 12px !important; font-size: 12px !important; }
       .s6-price { font-size: clamp(24px, 7vw, 32px) !important; }
       .s5a-grid .brutal-card { padding: 16px !important; }
