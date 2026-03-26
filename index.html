@@ -1185,26 +1185,34 @@
         grid-template-columns: 1fr !important;
       }
 
-      /* Photo wrappers — visible and prominent on mobile */
+      /* Photo wrappers — show full image, no crop */
       .s2-photo-wrap, .s6-deco-wrap, .s8-photo-wrap,
       .s4m-grid > div:last-child {
-        width: 100% !important; max-height: none !important;
-        aspect-ratio: 4/3 !important; overflow: hidden !important;
+        width: 100% !important; max-height: 280px !important;
+        aspect-ratio: auto !important; overflow: hidden !important;
         border-radius: 8px;
       }
       .s2-photo, .s6-deco-img, .s8-photo {
         filter: none !important; opacity: 1 !important;
+        width: 100% !important; height: 100% !important;
+        object-fit: cover !important; object-position: center !important;
       }
 
-      /* Photo strip — scroll horizontal, bigger images */
+      /* Photo strip — horizontal scroll, full visible images */
       .photo-strip {
-        height: auto !important;
-        gap: 6px !important; overflow-x: auto !important;
-        -webkit-overflow-scrolling: touch; padding: 0 16px;
+        height: auto !important; max-height: none !important;
+        overflow-x: auto !important; overflow-y: hidden !important;
+        gap: 4px !important;
+        -webkit-overflow-scrolling: touch;
+        padding: 0 !important;
+        scroll-snap-type: x mandatory !important;
       }
       .photo-strip img {
-        height: 160px !important; min-width: 120px !important;
-        width: auto !important; flex-shrink: 0;
+        height: 200px !important; min-width: 50vw !important;
+        width: auto !important; flex: none !important;
+        object-fit: cover !important; object-position: center !important;
+        scroll-snap-align: start !important;
+        filter: none !important; opacity: 1 !important;
       }
 
       /* Phone mockups — much smaller */
@@ -1268,28 +1276,98 @@
       /* Values pills on mobile */
       #slide-12 .pill { font-size: 13px !important; padding: 10px 20px !important; min-height: 44px !important; }
 
-      /* ====== PINK MONEY SIMULATOR ====== */
-      .pink-money-sim { gap: 20px !important; width: 100% !important; }
+      /* ====== PINK MONEY SIMULATOR — full mobile redesign ====== */
+      .pink-money-sim {
+        gap: 24px !important; width: 100% !important;
+        margin-top: 20px !important;
+      }
+
+      /* Slider section */
       .pm-slider-row {
         flex-direction: column !important; align-items: stretch !important;
-        gap: 8px !important; width: 100% !important;
+        gap: 12px !important; width: 100% !important;
+        background: var(--card) !important;
+        border: 2px solid var(--card-border) !important;
+        padding: 20px !important;
+        border-radius: 0 !important;
       }
-      .pm-slider-label { font-size: 12px !important; min-width: auto !important; }
+      .pm-slider-label {
+        font-size: 13px !important; min-width: auto !important;
+        margin-bottom: 4px !important;
+      }
       .pm-slider {
         width: 100% !important; min-width: 0 !important;
-        height: 8px !important;
+        height: 10px !important; border-radius: 5px !important;
       }
-      .pm-slider::-webkit-slider-thumb { width: 28px !important; height: 28px !important; }
-      .pm-slider::-moz-range-thumb { width: 28px !important; height: 28px !important; }
-      .pm-value { text-align: left !important; font-size: 24px !important; min-width: auto !important; }
-      .pm-bar-wrap { width: 100% !important; height: 36px !important; }
-      .pm-milestone { font-size: 10px !important; }
-      .pm-card { padding: 16px !important; }
-      .pm-card-value { font-size: 20px !important; }
-      .pm-card-label { font-size: 10px !important; }
-      .pm-card-sub { font-size: 11px !important; }
-      .pm-note { font-size: 11px !important; }
-      .pm-bar-label { font-size: 11px !important; }
+      .pm-slider::-webkit-slider-thumb {
+        width: 32px !important; height: 32px !important;
+        border-radius: 50% !important;
+      }
+      .pm-slider::-moz-range-thumb {
+        width: 32px !important; height: 32px !important;
+        border-radius: 50% !important;
+      }
+      .pm-value {
+        text-align: center !important;
+        font-size: 32px !important;
+        min-width: auto !important;
+        padding: 8px 0 0 !important;
+      }
+
+      /* Progress bar */
+      .pm-bar-wrap {
+        width: 100% !important; height: 40px !important;
+        border-radius: 0 !important;
+      }
+      .pm-bar { border-radius: 0 !important; }
+      .pm-bar-label { font-size: 13px !important; font-weight: 800 !important; }
+      .pm-milestone {
+        font-size: 10px !important;
+        padding: 0 2px !important;
+      }
+
+      /* Result cards — stack vertically with bigger content */
+      .pm-results {
+        grid-template-columns: 1fr !important;
+        gap: 12px !important;
+      }
+      .pm-card {
+        padding: 20px !important;
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        gap: 12px !important;
+      }
+      .pm-card-label {
+        font-size: 11px !important;
+        margin-bottom: 0 !important;
+        flex-shrink: 0 !important;
+      }
+      .pm-card-value {
+        font-size: 24px !important;
+        text-align: right !important;
+      }
+      .pm-card-sub {
+        display: none !important;
+      }
+      .pm-note {
+        font-size: 12px !important;
+        line-height: 1.5 !important;
+      }
+      /* Bar section */
+      .pm-bar-section {
+        background: var(--card) !important;
+        border: 2px solid var(--card-border) !important;
+        padding: 20px !important;
+      }
+      .pm-bar-header {
+        flex-wrap: wrap !important;
+        gap: 4px !important;
+        margin-bottom: 12px !important;
+      }
+      .pm-bar-title { font-size: 11px !important; }
+      .pm-bar-pct { font-size: 20px !important; }
 
       /* ====== SHOP (Clube YAG) ====== */
       .shop-grid {
@@ -1349,6 +1427,10 @@
       .phone-mockup.center { width: 110px !important; }
       .shop-grid { grid-template-columns: 1fr !important; }
       .pm-card-value { font-size: 18px !important; }
+      .pm-value { font-size: 28px !important; }
+      .pm-slider-row { padding: 16px !important; }
+      .pm-card { padding: 16px !important; }
+      .photo-strip img { height: 160px !important; min-width: 60vw !important; }
       .s2-card { padding: 10px 12px !important; font-size: 12px !important; }
       .s6-price { font-size: clamp(24px, 7vw, 32px) !important; }
       .s5a-grid .brutal-card { padding: 16px !important; }
@@ -1787,10 +1869,10 @@
       </div>
 
       <!-- Barra até 1M -->
-      <div>
-        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px;">
-          <span style="font-size:12px;color:var(--gray);font-weight:600;text-transform:uppercase;letter-spacing:.1em;">Seu ganho vs R$1M/mês</span>
-          <span style="font-family:var(--font-display);font-weight:800;color:var(--yellow);font-size:16px;" id="affPct">2%</span>
+      <div class="pm-bar-section">
+        <div class="pm-bar-header" style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px;">
+          <span class="pm-bar-title" style="font-size:12px;color:var(--gray);font-weight:600;text-transform:uppercase;letter-spacing:.1em;">Seu ganho vs R$1M/mês</span>
+          <span class="pm-bar-pct" style="font-family:var(--font-display);font-weight:800;color:var(--yellow);font-size:16px;" id="affPct">2%</span>
         </div>
         <div class="pm-bar-wrap">
           <div class="pm-bar" id="affBar" style="width:2%">
