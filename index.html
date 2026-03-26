@@ -1233,12 +1233,22 @@
         filter: none !important; opacity: 1 !important;
       }
 
-      /* Phone mockups — much smaller */
-      .phones-row { gap: 6px !important; justify-content: center !important; margin: 24px 0 20px !important; }
-      .phone-mockup { width: 100px !important; border-radius: 16px !important; border-width: 2px !important; }
-      .phone-mockup.center { width: 130px !important; }
+      /* Phone mockups — only center phone on mobile, full size */
+      .phones-row {
+        gap: 0 !important; justify-content: center !important;
+        margin: 24px 0 20px !important;
+      }
+      .phone-mockup.left, .phone-mockup.right {
+        display: none !important;
+      }
+      .phone-mockup.center {
+        width: 220px !important;
+        transform: none !important;
+        border-radius: 28px !important;
+        border-width: 3px !important;
+      }
       .phone-mockup.has-iframe { aspect-ratio: 9/19.5; }
-      .phone-mockup iframe { border-radius: 14px !important; }
+      .phone-mockup iframe { border-radius: 25px !important; }
 
       /* Pills row — wrap, touch-friendly */
       .pills-row { flex-wrap: wrap !important; gap: 8px !important; justify-content: center; }
@@ -1443,8 +1453,7 @@
       .slide > * { max-width: 100% !important; }
       .slide-title { font-size: clamp(18px, 6vw, 26px) !important; margin-bottom: 16px !important; }
       .stat-number { font-size: clamp(24px, 8vw, 40px) !important; }
-      .phone-mockup { width: 80px !important; }
-      .phone-mockup.center { width: 110px !important; }
+      .phone-mockup.center { width: 200px !important; }
       .shop-grid { grid-template-columns: 1fr !important; }
       .pm-card-value { font-size: 18px !important; }
       .pm-value { font-size: 28px !important; }
