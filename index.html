@@ -1177,10 +1177,11 @@
       /* Each slide clips its own content */
       .slide { overflow: hidden !important; }
 
-      /* All images fit */
+      /* All images fit — full, no crop */
       img, iframe { max-width: 100% !important; }
-      .slide img:not(.logo-img):not(.s2-photo):not(.s6-deco-img):not(.s8-photo) {
-        width: 100%; height: auto; object-fit: cover;
+      .slide img:not(.logo-img) {
+        width: 100% !important; height: auto !important;
+        object-fit: contain !important;
       }
 
       /* Typography — smaller on mobile */
@@ -1199,30 +1200,21 @@
         grid-template-columns: 1fr !important;
       }
 
-      /* Photo wrappers — compact on mobile, no crop */
-      .s2-photo-wrap, .s6-deco-wrap, .s8-photo-wrap {
-        width: 100% !important; height: 180px !important;
-        max-height: 180px !important;
-        aspect-ratio: auto !important; overflow: hidden !important;
-        border-radius: 8px;
-      }
+      /* Photo wrappers — full image, no crop */
+      .s2-photo-wrap, .s6-deco-wrap, .s8-photo-wrap,
       .s4m-grid > div:last-child {
-        width: 100% !important; height: 200px !important;
-        max-height: 200px !important;
-        aspect-ratio: auto !important; overflow: hidden !important;
+        width: 100% !important; height: auto !important;
+        max-height: none !important;
+        aspect-ratio: auto !important; overflow: visible !important;
         border-radius: 8px;
         position: relative !important;
       }
-      .s2-photo, .s6-deco-img,
+      .s2-photo, .s6-deco-img, .s8-photo,
       .s4m-grid > div:last-child img {
         filter: none !important; opacity: 1 !important;
-        width: 100% !important; height: 100% !important;
-        object-fit: cover !important; object-position: center top !important;
-      }
-      .s8-photo {
-        filter: none !important; opacity: 1 !important;
-        width: 100% !important; height: 100% !important;
-        object-fit: cover !important; object-position: center 20% !important;
+        width: 100% !important; height: auto !important;
+        object-fit: contain !important;
+        border-radius: 8px !important;
       }
 
       /* Photo strip — horizontal scroll, full visible images */
@@ -1242,16 +1234,16 @@
         filter: none !important; opacity: 1 !important;
       }
 
-      /* Phone mockups — only center phone on mobile, full size */
+      /* Phone mockups — only center phone, big */
       .phones-row {
         gap: 0 !important; justify-content: center !important;
-        margin: 24px 0 20px !important;
+        margin: 16px 0 0 !important;
       }
       .phone-mockup.left, .phone-mockup.right {
         display: none !important;
       }
       .phone-mockup.center {
-        width: 220px !important;
+        width: 240px !important;
         transform: none !important;
         border-radius: 28px !important;
         border-width: 3px !important;
@@ -1259,7 +1251,11 @@
       .phone-mockup.has-iframe { aspect-ratio: 9/19.5; }
       .phone-mockup iframe { border-radius: 25px !important; }
 
-      /* Pills row — wrap, touch-friendly */
+      /* Slide 6: hide pills and bottom text on mobile — just phone + title */
+      #slide-6 .pills-row { display: none !important; }
+      #slide-6 .s4-bottom { display: none !important; }
+
+      /* Pills row (other slides) — wrap, touch-friendly */
       .pills-row { flex-wrap: wrap !important; gap: 8px !important; justify-content: center; }
       .pill { font-size: 12px !important; padding: 10px 16px !important; min-height: 44px !important; display: inline-flex !important; align-items: center !important; }
 
@@ -1304,6 +1300,8 @@
       .tl-card li { font-size: 13px !important; }
 
       /* Embaixador */
+      .s8-photo-wrap::after { display: none !important; }
+      .s6-deco-wrap::after { display: none !important; }
       .s8-quote { font-size: 15px !important; padding: 16px 16px 16px 16px !important; border-left-width: 3px !important; }
       .s8-text { font-size: 13px !important; }
       .s8-rebel { font-size: 18px !important; }
@@ -1469,8 +1467,6 @@
       .pm-slider-row { padding: 16px !important; }
       .pm-card { padding: 16px !important; }
       .photo-strip img { height: 160px !important; min-width: 60vw !important; }
-      .s2-photo-wrap, .s6-deco-wrap, .s8-photo-wrap { height: 150px !important; max-height: 150px !important; }
-      .s4m-grid > div:last-child { height: 160px !important; max-height: 160px !important; }
       .s2-card { padding: 10px 12px !important; font-size: 12px !important; }
       .s6-price { font-size: clamp(24px, 7vw, 32px) !important; }
       .s5a-grid .brutal-card { padding: 16px !important; }
