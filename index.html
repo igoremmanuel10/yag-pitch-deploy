@@ -482,18 +482,40 @@
       color: var(--yellow);
     }
 
+    /* Phone animation (mobile only) — hidden on desktop */
+    .phone-animation-mobile { display: none; }
+    .phone-animation-mobile iframe {
+      border: none;
+      border-radius: 32px;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
     @media (max-width: 900px) {
       .phones-row { gap: 12px; }
       .phones-row .phone-mockup { width: 140px; }
       .phones-row .phone-mockup.center { width: 170px; }
     }
     @media (max-width: 768px) {
-      .phones-row .phone-mockup.left,
-      .phones-row .phone-mockup.right { display: none !important; }
-      .phones-row .phone-mockup.center { width: 220px !important; transform: none !important; }
+      /* Hide desktop phones, show mobile animation */
+      .phones-desktop { display: none !important; }
+      .phone-animation-mobile {
+        display: flex !important;
+        justify-content: center !important;
+        margin: 8px 0 !important;
+      }
+      .phone-animation-mobile iframe {
+        width: 260px !important;
+        height: 520px !important;
+        border-radius: 32px !important;
+      }
     }
-    @media (max-width: 480px) {
-      .phones-row .phone-mockup.center { width: 200px !important; }
+    @media (max-width: 380px) {
+      .phone-animation-mobile iframe {
+        width: 230px !important;
+        height: 460px !important;
+        border-radius: 28px !important;
+      }
     }
 
     /* ===================================================
@@ -1234,24 +1256,7 @@
         filter: none !important; opacity: 1 !important;
       }
 
-      /* Phone mockups — only center phone, big */
-      .phones-row {
-        gap: 0 !important; justify-content: center !important;
-        margin: 16px 0 0 !important;
-      }
-      .phone-mockup.left, .phone-mockup.right {
-        display: none !important;
-      }
-      .phone-mockup.center {
-        width: 240px !important;
-        transform: none !important;
-        border-radius: 28px !important;
-        border-width: 3px !important;
-      }
-      .phone-mockup.has-iframe { aspect-ratio: 9/19.5; }
-      .phone-mockup iframe { border-radius: 25px !important; }
-
-      /* Slide 6: hide pills and bottom text on mobile — just phone + title */
+      /* Slide 6: hide pills and bottom text on mobile — just animation + title */
       #slide-6 .pills-row { display: none !important; }
       #slide-6 .s4-bottom { display: none !important; }
 
@@ -1460,7 +1465,6 @@
       .slide > * { max-width: 100% !important; }
       .slide-title { font-size: clamp(18px, 6vw, 26px) !important; margin-bottom: 16px !important; }
       .stat-number { font-size: clamp(24px, 8vw, 40px) !important; }
-      .phone-mockup.center { width: 200px !important; }
       .shop-grid { grid-template-columns: 1fr !important; }
       .pm-card-value { font-size: 18px !important; }
       .pm-value { font-size: 28px !important; }
@@ -1641,7 +1645,8 @@
   <section id="slide-6" class="slide">
     <h2 class="slide-title reveal" style="text-align: center; margin-left: auto; margin-right: auto;">Mais que um app.<br><span class="yellow">Uma comunidade.</span></h2>
 
-    <div class="phones-row reveal" style="transition-delay: 0.15s;">
+    <!-- Desktop: 3 phones -->
+    <div class="phones-row phones-desktop reveal" style="transition-delay: 0.15s;">
       <div class="phone-mockup left has-iframe">
         <iframe src="phone-chat.html" loading="lazy"></iframe>
       </div>
@@ -1651,6 +1656,11 @@
       <div class="phone-mockup right has-iframe">
         <iframe src="phone-radar.html" loading="lazy"></iframe>
       </div>
+    </div>
+
+    <!-- Mobile: single animation (same as yag.social) -->
+    <div class="phone-animation-mobile reveal" style="transition-delay: 0.15s;">
+      <iframe src="phone-animation.html" loading="lazy" title="YAG App Demo"></iframe>
     </div>
 
     <div class="pills-row reveal" style="transition-delay: 0.25s;">
